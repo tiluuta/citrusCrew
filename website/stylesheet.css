@@ -4,6 +4,10 @@ body{
     margin:0;
     font-family: 'Open Sans', sans-serif;
 }
+a{
+    text-decoration:none;
+    color: #565656;
+}
 
 /* NAVBAR */
 #navbar{
@@ -50,6 +54,7 @@ body{
     background-color:white;
     height: fit-content;
     color: #565656;
+    text-align:left;
 }
 #footer .column{
     display:flex;
@@ -127,7 +132,7 @@ body{
     font-size:30px;
     color:#515151;
     height:50px;
-    width:50px;
+    aspect-ratio:1;
 }
 .box .row{
     gap: 15px;
