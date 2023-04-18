@@ -50,6 +50,7 @@ body{
     background-color:white;
     height: fit-content;
     color: #565656;
+    text-align:left;
 }
 #footer .column{
     display:flex;
