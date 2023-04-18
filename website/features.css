@@ -1,0 +1,33 @@
+#featurescaption {
+    width: 500px;
+    text-align: center;
+    margin: auto;
+    margin-top: 500px;
+}
+
+
+#RFID {
+    background-image: url("RFIDbackground.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#flex {
+    display: flex;
+    font-size: 20pt;
+    align-content: center;
+
+}
+
+#flex div {
+    margin-left: 60px;
+    margin-right: 60px;
+    padding: 10px;
+    align-content: center;
+}
+
+#flex img {
+    width: 150px;
+    height: 150px;
+    margin: 30px;
+}
