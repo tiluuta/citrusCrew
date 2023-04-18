@@ -4,6 +4,10 @@ body{
     margin:0;
     font-family: 'Open Sans', sans-serif;
 }
+a{
+    text-decoration:none;
+    color: #565656;
+}
 
 /* NAVBAR */
 #navbar{
@@ -50,6 +54,7 @@ body{
     background-color:white;
     height: fit-content;
     color: #565656;
+    text-align:left;
 }
 #footer .column{
     display:flex;
@@ -127,13 +132,75 @@ body{
     font-size:30px;
     color:#515151;
     height:50px;
-    width:50px;
+    aspect-ratio:1;
 }
 .box .row{
     gap: 15px;
 }
 .box .circle{
     font-size:18px;
+}
+
+/* CONTACT PAGE */
+
+#contactbox{
+width: 850px;
+height: 550px;
+margin: auto;
+margin-right: 590px;
+margin-top: -50px;
+padding-left: 10px;
+padding-right: 10px;
+background: linear-gradient(115.55deg, rgba(68, 68, 68, 0.22) 4.32%, #474646 97.06%);
+border-radius: 5px;
+box-shadow: 5px 5px 5px grey;
+}
+
+form {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+}
+
+label {
+
+  margin-top: 20px;
+  font-size: 14pt;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 20px;
+  margin-top: 5px;
+  margin: 20px;
+  font-size: 12pt;
+}
+
+input[type="submit"] {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  font-size: 14pt;
+  border-radius: 10px;
+}
+
+
+
+#contactus {
+    
+    width: 850px;
+    height: 150px;
+    margin: auto;
+    margin-right: 600px;
+    margin-top: -25px;
+   text-align: center;
+    font-size: 65pt;
 }
 
 
