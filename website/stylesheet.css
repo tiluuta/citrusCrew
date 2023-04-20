@@ -8,6 +8,9 @@ a{
     text-decoration:none;
     color: #565656;
 }
+span a{
+    color:white;
+}
 
 /* NAVBAR */
 #navbar{
@@ -207,8 +210,8 @@ input[type="submit"] {
 
 /* ORDER PAGE */
 #orderform input[type="text"],
-input[type="email"],
-textarea {
+#orderform input[type="email"],
+#orderform textarea {
   width: 100%;
   font-size: 12pt;
   background-color:rgba(255, 255, 255, 0);
