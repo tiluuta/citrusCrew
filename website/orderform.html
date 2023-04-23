@@ -37,10 +37,12 @@
                         <input type="text" placeholder="First Name">
                         <input type="text" placeholder="Last Name">
                     </div>
-                    <div class="row">
-                        <input type="text" placeholder="Valid Email Address">
-                        <input type="text" placeholder="Phone Number (Optional)">
-                    </div>
+                    <input type="text" placeholder="Valid Email Address" id="email">
+                    <div class="error" id="validemail"></div>
+                    <input type="text" placeholder="Phone Number (Optional)" id="phone">
+                    <div class="error" id="validphone"></div>
+                    
+
                     
                 </form>
                 <br>
@@ -50,7 +52,7 @@
                     <div class="row">
                         <input type="text" placeholder="City">
                         <input type="text" placeholder="State">
-                        <input type="text" placeholder="ZIP Code">
+                        <input type="text" placeholder="ZIP Code" id="zip">
                     </div>
                 
                 <br>
@@ -63,7 +65,7 @@
 
             <div class="box" style="text-align:left;">
                 <h1>Order Summary</h1>
-                <p>Tax</p>
+                <p>Tax: <div id="tax">&nbsp;</div></p>
                 <p>Shipping fee</p>
                 <p>Total Calculation</p>
 
@@ -77,8 +79,108 @@
             
         </div>
 
-        
+        <script>
 
+            removespaces = function(input){
+                input = input.replace(/ /g, "");
+                return input;
+            }
+            function removecharacters(input){
+                input = input.replace(/,/g, "");
+                input = input.replace(/\./g,"");
+                return input;
+            }
+            checkemail = function(input){
+                let atposition = input.indexOf("@");
+                if (atposition < 0 || input.indexOf(".",atposition) < 0){
+                    document.querySelector("#validemail").innerHTML = "Please enter a valid email address with a domain.";
+                } else
+                document.querySelector("#validemail").innerHTML = "";
+            }
+            checkphone = function(input){
+                let atposition = input.indexOf("(");
+                if (atposition < 0 || input.indexOf(")",atposition) < 0 || input.indexOf("-") != 8){
+                    document.querySelector("#validphone").innerHTML = "Please enter a phone number with the format (***)***-****.";
+                } else
+                document.querySelector("#validphone").innerHTML = "";
+            }
+            findtax = function(input){
+                let zip = "";
+                if(input.length == 5){
+                    zip = input;   
+                    
+                    fetch(url,options)
+                        .then((response) => {
+                            return response.json();
+                        })
+                        .then((data) => {
+                            alert(url);
+                            let html = '';
+                            alert(`${data.combined_rate}`);
+
+                            let htmlSegment = `${data.combined_rate}`;
+                            html += htmlSegment;
+
+                            document.getElementById("tax").innerHTML = html;
+                        })
+                        .catch(err => console.error(err));
+
+
+                }
+            }
+
+
+
+            /* SALES TAX */
+            const options = {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': 'aca23fd5c4msh49ba7067f459322p172036jsn3b6b1f994257',
+                    'X-RapidAPI-Host': 'sales-tax-rates1.p.rapidapi.com'
+                }
+            };
+            
+            document.querySelector("#email").addEventListener("keypress",function(){
+                checkemail(document.querySelector("#email").value);
+            })
+            document.querySelector("#phone").addEventListener("keypress",function(){
+                document.querySelector("#phone").value = removespaces(document.querySelector("#phone").value);
+                checkphone(document.querySelector("#phone").value);
+            })
+            document.querySelector("#zip").addEventListener("keypress",function(){
+                findtax(document.querySelector("#zip").value)
+            })
+
+            const url = 'https://sales-tax-rates1.p.rapidapi.com/v/api/?zip=' + document.querySelector("#zip").value;
+
+            
+
+            /*
+            async function getData(zip){
+                let url = 'https://sales-tax-rates1.p.rapidapi.com/v/api/?zip=' + zip;
+                try {
+                    let res = await fetch(url, options);
+                    return await res.json();
+                } catch (error){
+                    console.log(error);
+                }
+            }
+
+            async function renderData(zip){
+                let taxrate = await getData(zip);
+
+                taxrate.forEach(zip => {
+                    html = ${data.combined_rate};
+
+                });
+
+                
+            }
+            */
+
+
+
+        </script>
 
 
 
