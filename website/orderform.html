@@ -32,12 +32,12 @@
 
             <div class="box" style="text-align:left;">
                 <h1>Contact</h1>
-                <form>
+                <form method="post" action="action.php">
                     <div class="row">
                         <input type="text" placeholder="First Name">
                         <input type="text" placeholder="Last Name">
                     </div>
-                    <input type="text" placeholder="Valid Email Address" id="email">
+                    <input type="text" placeholder="Valid Email Address" id="email" required="1">
                     <div class="error" id="validemail"></div>
                     <input type="text" placeholder="Phone Number (Optional)" id="phone">
                     <div class="error" id="validphone"></div>
@@ -51,27 +51,23 @@
                     <input type="text" style="width:100%;" placeholder="Address 2 (Optional)">
                     <div class="row">
                         <input type="text" placeholder="City">
-                        <input type="text" placeholder="State">
+                        <input type="text" placeholder="State" id="state">
                         <input type="text" placeholder="ZIP Code" id="zip">
                     </div>
-                
-                <br>
-                <h1>Payment Options</h1>
-                <p>Paypal</p>
-                <p>Apple Pay</p>
+                    <br>
             </div>
 
             <br>
 
             <div class="box" style="text-align:left;">
                 <h1>Order Summary</h1>
-                <p>Tax: <div id="tax">&nbsp;</div></p>
-                <p>Shipping fee</p>
-                <p>Total Calculation</p>
+                <p id="tax">Tax: <em>Calculating...</em></p>
+                <p>Shipping fee: $5</p>
+                <p id="total">Total Calculation: <em>Calculating...</em></p>
 
                 <div class="row" style="text-align:center;">
-                    <div class="darkbutton" style="margin-top:50px;width:100px;">Order Now</div>
-                    <div class="roundbutton" style="margin-top:50px;width:80px;">Cancel</div>
+                    <div class="darkbutton" style="margin-top:50px;width:100px;" id="orderaction">Order Now</div>
+                    <div class="roundbutton" style="margin-top:50px;width:80px;" id="cancelaction">Cancel</div>
                 </div>
             </div>
 
@@ -114,28 +110,40 @@
                             return response.json();
                         })
                         .then((data) => {
-                            alert(url);
-                            let html = '';
-                            alert(`${data.combined_rate}`);
+                            console.log(data);
+                            let taxhtml = '';
 
-                            let htmlSegment = `${data.combined_rate}`;
-                            html += htmlSegment;
+                            const taxrate = `${data.data.combined_rate}`;
+                            taxhtml += taxrate;
 
-                            document.getElementById("tax").innerHTML = html;
+                            let sum = 20.0;
+                            document.getElementById("total").innerHTML = "Total Calculation: $" + totalcalc(sum,taxrate);
+
+
+                            document.getElementById("tax").innerHTML = "Tax: " + taxhtml + "%";
                         })
                         .catch(err => console.error(err));
 
-
                 }
+            }
+
+            totalcalc = function(sum,taxrate){
+                let totalsum = sum * (parseFloat(taxrate) / 100);
+                totalsum += sum;
+                totalsum += 5.00;
+                return totalsum;
             }
 
 
 
             /* SALES TAX */
+            const url = 'https://sales-tax-rates1.p.rapidapi.com/v/api/?zip=' + document.querySelector("#zip").value;
+
             const options = {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': 'aca23fd5c4msh49ba7067f459322p172036jsn3b6b1f994257',
+                    'content-type': 'application/octet-stream',
+                    'X-RapidAPI-Key': 'a98364e0cemshaa9ebfb8ecbf8c5p19c9d2jsnc40ea2454627',
                     'X-RapidAPI-Host': 'sales-tax-rates1.p.rapidapi.com'
                 }
             };
@@ -147,38 +155,15 @@
                 document.querySelector("#phone").value = removespaces(document.querySelector("#phone").value);
                 checkphone(document.querySelector("#phone").value);
             })
-            document.querySelector("#zip").addEventListener("keypress",function(){
-                findtax(document.querySelector("#zip").value)
+            document.querySelector("#zip").addEventListener("input",function(){
+                findtax(document.querySelector("#zip").value);
             })
-
-            const url = 'https://sales-tax-rates1.p.rapidapi.com/v/api/?zip=' + document.querySelector("#zip").value;
-
-            
-
-            /*
-            async function getData(zip){
-                let url = 'https://sales-tax-rates1.p.rapidapi.com/v/api/?zip=' + zip;
-                try {
-                    let res = await fetch(url, options);
-                    return await res.json();
-                } catch (error){
-                    console.log(error);
-                }
-            }
-
-            async function renderData(zip){
-                let taxrate = await getData(zip);
-
-                taxrate.forEach(zip => {
-                    html = ${data.combined_rate};
-
-                });
-
-                
-            }
-            */
-
-
+            document.querySelector("#orderaction").addEventListener("click",function(){
+                window.open("https://docs.google.com/forms/d/e/1FAIpQLSfBAURC1R2nr4Ki9X_wH7vC7TpOZgk_bHe21BEP2pKxlM1G9A/viewform"); 
+            })
+            document.querySelector("#cancelaction").addEventListener("click",function(){
+                window.open("main.html", "_self"); 
+            })
 
         </script>
 
