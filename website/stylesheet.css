@@ -54,12 +54,12 @@ span a{
 }
 #footer{
     margin:80px 0px 0px 0px;
-    padding: 80px 0px 100px 0px;
+    padding: 80px 0px 80px 80px;
     background-color:white;
     height: fit-content;
     color: #565656;
     text-align:left;
-    width:100%;
+    width:100% - 80px;
 }
 #footer .column{
     display:flex;
