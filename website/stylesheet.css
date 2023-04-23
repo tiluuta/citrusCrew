@@ -226,5 +226,26 @@ input[type="submit"] {
   
 }
 
+/* ABOUT TEAM */
+.profile{
+    background-color:black;
+    border-radius:20px;
+    height:300px;
+    width:250px;
+}
+.bio{
+    text-align:center;
+    padding:20px 0px 80px 0px;
+}
+.whitedesc{
+    color:white;
+    font-size:25px;
+    text-align:center;
+    width:50%;
+    margin:auto;
+    margin-top:150px;
+    margin-bottom:100px;
+}
+
 
 
