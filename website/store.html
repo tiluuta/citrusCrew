@@ -6,6 +6,10 @@
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
         <!-- ICONS -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+       <!-- magnific-popup css cdn link (photogallery) -->
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+       <!-- custom css file link (photogallery) -->
+       <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <div id="navbar">
@@ -56,7 +60,22 @@
             <div class="greycontainer">
                 <div class="box">
                     <div class="row">
-                        <img src="ring_transparent.png">
+                        <div class="gallery">
+                            <div class="image-container">
+                                <a href="ring_transparent.png" class="image">
+                                    <img src="ring_transparent.png" alt="">
+                                </a>
+                                <a href="transparent-keyring.png" class="image hidden">
+                                    <img src="transparent-keyring.png" alt="">
+                                </a>
+                        
+                           
+                        
+                    
+                               
+                            </div>
+                        
+                        </div>
                         <div>
                             <div class="bigtitle" style="margin-bottom:50px;">Keyring.</div>
                             <div class="tinytext">Pick your ring size.</div>
@@ -110,6 +129,52 @@
         </div>
 
 
+
+        <!-- jquery cdn link (photogallery)  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- magnific popup js cdn link (photogallery) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+<script> /*photogallery*/
+
+$(document).ready(function(){
+    $(".hidden").hide();
+    $('.buttons').click(function(){
+
+        $(this).addClass('active').siblings().removeClass('active');
+
+        var filter = $(this).attr('data-filter')
+
+        if(filter == 'all'){
+            $('.image').show(400);
+        }else{
+            $('.image').not('.'+filter).hide(200);
+            $('.image').filter('.'+filter).show(400);
+        }
+
+    });
+
+    $('.gallery').magnificPopup({
+
+        delegate:'a',
+        type:'image',
+        gallery:{
+            enabled:true
+        },
+        callbacks: {
+            imageLoadComplete: function() {
+                this.content.find('img').css({
+                    'max-width': '800px',
+                    'max-height': '800px'
+                });
+            }
+        }
+    });
+
+});
+
+</script>
     </body>
 
 
