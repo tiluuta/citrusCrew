@@ -34,26 +34,31 @@
                 <h1>Contact</h1>
                 <form method="post" action="action.php">
                     <div class="row">
-                        <input type="text" placeholder="First Name">
-                        <input type="text" placeholder="Last Name">
+                        <input type="text" placeholder="First Name" required="1">
+                        <input type="text" placeholder="Last Name" required="1">
                     </div>
                     <input type="text" placeholder="Valid Email Address" id="email" required="1">
                     <div class="error" id="validemail"></div>
+                    <div class="error" id="validadd" style="padding-left:20pt;"></div>
+                    <div class="error" id="validdom" style="padding-left:20pt;"></div>
                     <input type="text" placeholder="Phone Number (Optional)" id="phone">
                     <div class="error" id="validphone"></div>
-                    
+                    <div class="error" id="validarea" style="padding-left:20pt;"></div>
+                    <div class="error" id="validdig" style="padding-left:20pt;"></div>
 
                     
                 </form>
                 <br>
                 <h1>Shipping</h1>
-                    <input type="text" style="width:100%;" placeholder="Address 1">
+                    <input type="text" style="width:100%;" placeholder="Address 1" required="1">
                     <input type="text" style="width:100%;" placeholder="Address 2 (Optional)">
                     <div class="row">
-                        <input type="text" placeholder="City">
+                        <input type="text" placeholder="Country" id="country">
                         <input type="text" placeholder="State" id="state">
+                        <input type="text" placeholder="City" id="region">
                         <input type="text" placeholder="ZIP Code" id="zip">
                     </div>
+                    <div class="error" id="validzip"></div>
                     <br>
             </div>
 
@@ -61,9 +66,12 @@
 
             <div class="box" style="text-align:left;">
                 <h1>Order Summary</h1>
+                <p id="subtotal">Subtotal: </p>
                 <p id="tax">Tax: <em>Calculating...</em></p>
                 <p>Shipping fee: $5</p>
                 <p id="total">Total Calculation: <em>Calculating...</em></p>
+
+                <br>
 
                 <div class="row" style="text-align:center;">
                     <div class="darkbutton" style="margin-top:50px;width:100px;" id="orderaction">Order Now</div>
@@ -76,29 +84,131 @@
         </div>
 
         <script>
+            const sum = 20.0;
+            var statename = [];
+            var stateabbr = [];
+
+            fetch("./georef-united-states-of-america-state.json")
+                    .then(function(response) {
+                        return response;
+                    })
+                    .then(function(data) {
+                        return data.json();
+                    })
+                    .then((data) => {
+                        for(let i=0; i < 50; i++){
+                            console.log(data);
+                            statename.push([i, `${data.ste_name}` [i]]);
+                            stateabbr.push([i, `${data.ste_stusps_code}` [i]]);
+                        }
+                    })
+                    .catch(err => console.error(err));
+
+                    /*.then(function(response) {
+                        return response;
+                    })
+                    .then(function(data) {
+                        return data.json();
+                    })
+                    .then(function (Normal) {
+                        const html = Normal.map(
+                            (data) => `<div class="box">
+                            <h1 class="cost">${data.cost}</h1>
+                            <h1>${data.productservice}</h1>
+                            <p>${data.description}</p>
+                            <br>
+                            <p><em>Sponsored by ${data.sponsor}</em></p>
+                        </div>`
+                        );
+                        document.getElementById("maincontainer").innerHTML = html;
+                    })
+                    .catch(function(err) {
+                        console.log("Fetch problem show: " + err.message);
+                    }
+                    );*/
+                
+
+            autocountry = function(input){
+                if(input.charAt(0) == "C"){
+                    document.getElementById("country").value = "CANADA";
+                    document.querySelector("#state").placeholder = "Province/Territory";
+                    document.querySelector("#validzip").innerHTML = "Calculated tax rates are not available for this country.";
+                    document.getElementById("subtotal").innerHTML = totalcalc(sum,0);
+                    document.getElementById("tax").innerHTML = "Tax: 0%";
+                } else if(input.charAt(0) == "M"){
+                    document.getElementById("country").value = "MEXICO";
+                    document.querySelector("#state").placeholder = "State";
+                    document.querySelector("#validzip").innerHTML = "Calculated tax rates are not available for this country.";
+                    document.getElementById("subtotal").innerHTML = totalcalc(sum,0);
+                    document.getElementById("tax").innerHTML = "Tax: 0%";
+                }
+                else if(input.charAt(0) == "U"){
+                    document.querySelector("#zip").style.display = "inline";
+                    document.querySelector("#state").placeholder = "State";
+                    document.getElementById("country").value = "USA";
+                } else{
+                    document.getElementById("subtotal").innerHTML = totalcalc(sum,0);
+                    document.querySelector("#validzip").innerHTML = "Calculated tax rates are not available for this country.";
+                    document.getElementById("tax").innerHTML = "Tax: 0%";
+                }
+            }
+
+            autostate = function(){
+                if(document.getElementById("country").value == "USA"){
+                    document.querySelector("#state").value.substr(0,1)
+                }
+            }
 
             removespaces = function(input){
                 input = input.replace(/ /g, "");
                 return input;
             }
-            function removecharacters(input){
+            removecharacters = function(input){
                 input = input.replace(/,/g, "");
                 input = input.replace(/\./g,"");
                 return input;
             }
             checkemail = function(input){
                 let atposition = input.indexOf("@");
-                if (atposition < 0 || input.indexOf(".",atposition) < 0){
-                    document.querySelector("#validemail").innerHTML = "Please enter a valid email address with a domain.";
-                } else
-                document.querySelector("#validemail").innerHTML = "";
+                if (atposition <= 0 || input.indexOf(".",atposition) <= 0){
+                    document.querySelector("#validemail").innerHTML = "Your email address is missing: ";
+                    if(atposition <= 0){
+                        document.querySelector("#validadd").innerHTML = "an address (@)";
+                    } else{
+                        document.querySelector("#validadd").innerHTML = "";
+                    }
+                    if(input.indexOf(".",atposition) <= 0){
+                        document.querySelector("#validdom").innerHTML = "a domain (.com, .edu, etc)";
+                    } else{
+                        document.querySelector("#validdom").innerHTML = "";
+                    }
+                } else{
+                    document.querySelector("#validadd").innerHTML = "";
+                    document.querySelector("#validdom").innerHTML = "";
+                    document.querySelector("#validemail").innerHTML = "";
+                }
+                
             }
             checkphone = function(input){
-                let atposition = input.indexOf("(");
-                if (atposition < 0 || input.indexOf(")",atposition) < 0 || input.indexOf("-") != 8){
-                    document.querySelector("#validphone").innerHTML = "Please enter a phone number with the format (***)***-****.";
-                } else
-                document.querySelector("#validphone").innerHTML = "";
+                let parposition = input.indexOf("(");
+                if (parposition < 0 || input.indexOf(")",parposition) <= 3 || input.indexOf("-") < 8 || input.charAt(12) == "" || input.charAt(13) != ""){
+                    document.querySelector("#validphone").innerHTML = "Please enter a phone number with the format (XXX)XXX-XXXX. Your phone number is missing: ";
+                    if(parposition < 0 || input.indexOf(")",parposition) <= 3){
+                        document.querySelector("#validarea").innerHTML = "an area code in the format (XXX)";
+                    } else{
+                        document.querySelector("#validarea").innerHTML = "";
+                    }
+                    if(input.indexOf("-") < 8 || input.charAt(12) == "" || input.charAt(13) != ""){
+                        document.querySelector("#validdig").innerHTML = "3 exchange numbers followed by a dash (-) and 4 digits";
+                    } else{
+                        document.querySelector("#validdig").innerHTML = "";
+                    }
+
+                } else{
+                    document.querySelector("#validarea").innerHTML = "";
+                    document.querySelector("#validdig").innerHTML = "";
+                    document.querySelector("#validphone").innerHTML = "";
+                }
             }
             findtax = function(input){
                 let zip = "";
@@ -114,23 +224,28 @@
                             let taxhtml = '';
 
                             const taxrate = `${data.data.combined_rate}`;
+                            const statehtml = `${data.data.state}`;
+                            const regionhtml = `${data.data.region}`;
                             taxhtml += taxrate;
 
-                            let sum = 20.0;
                             document.getElementById("total").innerHTML = "Total Calculation: $" + totalcalc(sum,taxrate);
 
 
                             document.getElementById("tax").innerHTML = "Tax: " + taxhtml + "%";
+                            document.getElementById("state").value = statehtml;
+                            document.getElementById("region").value = regionhtml;
                         })
                         .catch(err => console.error(err));
-
                 }
             }
 
             totalcalc = function(sum,taxrate){
-                let totalsum = sum * (parseFloat(taxrate) / 100);
-                totalsum += sum;
-                totalsum += 5.00;
+                document.getElementById("subtotal").innerHTML = "Subtotal: $" + sum;
+                if(taxrate != 0){
+                    let totalsum = sum * (parseFloat(taxrate) / 100);
+                    totalsum += sum;
+                    totalsum += 5.00;
+                }
                 return totalsum;
             }
 
@@ -147,15 +262,22 @@
                     'X-RapidAPI-Host': 'sales-tax-rates1.p.rapidapi.com'
                 }
             };
-            
-            document.querySelector("#email").addEventListener("keypress",function(){
+
+            document.querySelector("#country").addEventListener("keyup",function(){
+                document.querySelector("#country").value = document.querySelector("#country").value.toUpperCase();
+                if((this).value == "U" || (this).value == "M" || (this).value == "C"){
+                    autocountry((this).value);
+                }
+            })
+            document.querySelector("#email").addEventListener("keyup",function(){
+                document.querySelector("#email").value = removespaces(document.querySelector("#email").value);
                 checkemail(document.querySelector("#email").value);
             })
-            document.querySelector("#phone").addEventListener("keypress",function(){
+            document.querySelector("#phone").addEventListener("keyup",function(){
                 document.querySelector("#phone").value = removespaces(document.querySelector("#phone").value);
                 checkphone(document.querySelector("#phone").value);
             })
-            document.querySelector("#zip").addEventListener("input",function(){
+            document.querySelector("#zip").addEventListener("keyup",function(){
                 findtax(document.querySelector("#zip").value);
             })
             document.querySelector("#orderaction").addEventListener("click",function(){
