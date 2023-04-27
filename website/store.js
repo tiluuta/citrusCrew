@@ -1,3 +1,18 @@
+$(document).ready(function() { //why wont this work!!!!!!!??????????
+    $("#addtocart").on("click", function(){
+        alert("this works")
+        var sizeselect = $("#ring-size").val();
+        if ( sizeselect == "default-size" ){
+            alert("Please select a size.");
+        }
+        else {
+            alert("Your item has been sccessfully added to your cart!");
+        }
+    });
+  });
+
+
+
 function updateProduct() {
     // Get selected options
     var color = document.getElementById("ring-color").value;
@@ -24,4 +39,7 @@ function updateProduct() {
     document.getElementById("ring-image").src = image;
     document.getElementById("ring-price").innerHTML = price;
   }
+
+
+
   
