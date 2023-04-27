@@ -18,22 +18,23 @@ function updateProduct() {
     const size = document.getElementById("ring-size").value;
   
     // Update image and price based on selected options
-    var image = "White-Resin.PNG";
-    var price = "$20";
-    if (color === "Light" && material === "Resin") {
+    let image = "White-Resin.PNG";
+    let price = "$20";
+
+    if (color === "Light") {
       image = "White-Resin.PNG";
       price = "$20";
-    } else if (color === "Dark" && material === "Resin") {
+    } if (color === "Dark" && material != "Titanium") {
       image = "Black-Resin.PNG";
       price = "$25";
-    } else if (color === "Light" && material === "Titanium") {
+    } if (color === "Light" && material === "Titanium") {
       image = "White-Metal.PNG";
       price = "$70";
     }
- else if (color === "Dark" && material === "Titanium") {
-    image = "Black-Metal.PNG";
-    price = "$75";
-  }
+    if (color === "Dark" && material === "Titanium") {
+        image = "Black-Metal.PNG";
+        price = "$75";
+      }
     document.getElementById("ring-image").src = image;
     document.getElementById("ring-price").innerHTML = price;
   }
