@@ -326,5 +326,13 @@ input[type="submit"] {
     border-radius: 10%;
 }
 
+/* CART */
+.cartitem{
+    background-color:white;
+}
+.deleteItem{
+    color:red;
+}
+
 
 

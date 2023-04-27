@@ -7,7 +7,66 @@
         <!-- ICONS -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
     </head>
-    <body style="background-color:black;">
+    <script>
+        var items=[];
+        var colors=[];
+        var materials=[];
+        var sizes=[];
+        var prices=[];
+
+        getCart = function(){
+            for(let j=0;j<localStorage.getItem("lastindex");j++){
+                console.log(localStorage.getItem("lastindex"));
+                items.push(localStorage.getItem("items[" + j + "]"));
+                colors.push(localStorage.getItem("colors[" + j + "]"));
+                materials.push(localStorage.getItem("materials[" + j + "]"));
+                sizes.push(localStorage.getItem("sizes[" + j + "]"));
+                prices.push(localStorage.getItem("prices[" + j + "]"));
+            }
+
+            showCart();
+        }
+
+        showCart = function(){
+            let html = "";
+            if(localStorage.getItem("lastindex") != null && localStorage.getItem("lastindex") > -1){
+                document.getElementById("clearAll").style.display = "inline";
+                for(let j=0;j<localStorage.getItem("lastindex");j++){
+                    html +="<div class='cartitem'><div class='row'>";
+                    html += "<div>Color: " + colors[j] + "</div>";
+                    html += "<div>Material: " + materials[j] + "</div>";
+                    html += "<div>Size: " + sizes[j] + "</div>";
+                    html += "</div><div>Price: " + prices[j] + "</div>";
+                    html += "<div class='deleteItem'>Remove from cart</div></div>";
+                }
+                document.getElementById("cart").innerHTML += html;
+            } else{
+                html += "Your cart is empty";
+                document.getElementById("clearAll").style.display = "none";
+                document.getElementById("cart").innerHTML = html;
+            }
+        }
+
+        deleteItem = function(itemnum){
+            console.log(localStorage.getItem("lastindex"));
+            items = items.splice(itemnum,itemnum+1);
+            colors = colors.splice(itemnum,itemnum+1);
+            materials = materials.splice(itemnum,itemnum+1);
+            sizes = sizes.splice(itemnum,itemnum+1);
+            prices = prices.splice(itemnum,itemnum+1);
+
+            localStorage.setItem("lastindex", localStorage.getItem("lastindex") - 1);
+            getCart();
+            
+            showCart();
+            console.log(localStorage.getItem("lastindex"));
+            console.log(localStorage.getItem("items[0]"));
+        }
+
+        
+        
+    </script>
+    <body style="background-color:black;" onload="getCart()">
         <div id="navbar">
             <span class="material-symbols-outlined icon">apps</span>
             <span class="material-symbols-outlined icon"><a href="orderform.html">shopping_cart</a></span>
@@ -23,9 +82,19 @@
             <div id="orderform">
             <div class="box" style="text-align:left;">
                 <h1>Cart</h1>
-                <p>Change customization</p>
-                <p>Increase/Decrease quantity</p>
-                <p>Remove from cart</p>
+                <div id="cart">
+                    <!-- CONTAINER FOR ITEMS IN CART -->
+                </div>
+                <div id="clearAll">Clear cart</div>
+                <script>
+                    document.getElementById("clearAll").addEventListener("click",function(){
+                        localStorage.clear();
+                        showCart();
+                    })
+                    /*document.querySelector(".deleteItem").addEventListener("click",function(){
+                        deleteItem(0);
+                    })*/
+                </script>
             </div>
 
             <br>
@@ -84,7 +153,7 @@
         </div>
 
         <script>
-            const sum = 20.0;
+            var sum = 20.0;
 
             autocountry = function(input){
                 if(input.charAt(0) == "C"){
