@@ -6,12 +6,21 @@
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
         <!-- ICONS -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+       <!-- magnific-popup css cdn link (photogallery) -->
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+       <!-- custom css file link (photogallery) -->
+       <link rel="stylesheet" href="css/style.css">
+       <!-- store css -->
+       <link href="store.css" rel="stylesheet" type="text/css">
+        <!-- store js -->
+       <script src="store.js"></script>
+
     </head>
     <body>
         <div id="navbar">
-            <div class="material-symbols-outlined icon">apps</div>
-            <span class="material-symbols-outlined icon">shopping_cart</span>
-            <span class="material-symbols-outlined icon">contact_support</span>
+            <span class="material-symbols-outlined icon">apps</span>
+            <span class="material-symbols-outlined icon"><a href="orderform.html">shopping_cart</a></span>
+            <span class="material-symbols-outlined icon"><a href="contact.html">contact_support</a></span>
         </div>
         <div id="outercontainer">
             <div id="headcontainer">
@@ -56,39 +65,72 @@
             <div class="greycontainer">
                 <div class="box">
                     <div class="row">
-                        <img src="ring_transparent.png">
+                        <!--<div class="gallery">
+                            <div class="image-container, ring-image">
+                                <a href="ring_transparent.png" class="image" id="ring-image">
+                                        <img src="ring_transparent.png" alt="">
+                                    </a>
+                                    <a href="transparent-keyring.png" class="image hidden" id="ring-image">
+                                        <img src="transparent-keyring.png" alt="">
+                                    </a>
+                            </div>
+                        
+                        </div>-->
                         <div>
-                            <div class="bigtitle" style="margin-bottom:50px;">Keyring.</div>
-                            <div class="tinytext">Pick your ring size.</div>
-                            <div class="row" style="margin-top:40px;">
-                                <div class="circle"><div>3</div></div>
-                                <div class="circle"><div>3.5</div></div>
-                                <div class="circle"><div>4</div></div>
-                                <div class="circle"><div>4.5</div></div>
-                                <div class="circle"><div>5</div></div>
-                                <div class="circle"><div>5.5</div></div>
-                                <div class="circle"><div>6</div></div>
-                                <div class="circle"><div>6.5</div></div>
-                            </div>
-                        <br>
-                            <div class="row">
-                            <div class="circle"><div>7</div></div>
-                            <div class="circle"><div>7.5</div></div>
-                            <div class="circle"><div>8</div></div>
-                            <div class="circle"><div>8.5</div></div>
-                            <div class="circle"><div>9</div></div>
-                            <div class="circle"><div>9.5</div></div>
-                            <div class="circle"><div>10</div></div>
-                            <div class="circle"><div>10.5</div></div>
-                            </div>
-                        <br>
-                            <div class="row">
-                                <div class="circle"><div>11</div></div>
-                                <div class="circle"><div>11.5</div></div>
-                                <div class="circle"><div>12</div></div>
-                            </div>
-                        <br>
-                            <div class="darkbutton" style="margin-top:20px;">Add to cart</div>
+                          
+                            <div class="product-customization">
+                                <div class="product-image">
+                                    <a href="White-Resin.PNG" class="image" id="ring-image">
+                                        <img src="White-Resin.PNG" alt="">
+                                    </a>
+                                </div>
+                                <div class="product-details">
+                                    <br>
+                                  <h1>Keyring.</h1>
+                                  <p id="ring-price">$20</p>
+                                  <div class="options">
+                                    <label for="ring-color">Color:</label>
+                                    <select id="ring-color" onchange="updateProduct()">
+                                      <option value="default-color">Select a color</option>
+                                      <option value="Light">Light</option>
+                                      <option value="Dark">Dark</option>
+                                    </select>
+                                    <label for="ring-material">Material:</label>
+                                    <select id="ring-material" onchange="updateProduct()">
+                                      <option value="default-material">Select a material</option>
+                                      <option value="Resin">Resin</option>
+                                      <option value="Titanium">Titanium</option>
+                                    </select>
+                                    <label for="ring-size">Size:</label>
+                                    <select id="ring-size" onchange="updateProduct()">
+                                      <option value="default-size">Select a size</option>
+                                      <option value="3">3</option>
+                                      <option value="3.5">3.5</option>
+                                      <option value="4">4</option>
+                                      <option value="4.5">4.5</option>
+                                      <option value="5">5</option>
+                                      <option value="5.5">5.5</option>
+                                      <option value="6">6</option>
+                                      <option value="6.5">6.5</option>
+                                      <option value="7">7</option>
+                                      <option value="7.5">7.5</option>
+                                      <option value="8">8</option>
+                                      <option value="8.5">8.5</option>
+                                      <option value="9">9</option>
+                                      <option value="9.5">9.5</option>
+                                      <option value="10">10</option>
+                                      <option value="10.5">10.5</option>
+                                      <option value="11">11</option>
+                                      <option value="11.5">11.5</option>
+                                      <option value="12">12</option>
+                                    </select>
+                                  </div>
+                                  <br><br>
+                                  <div class="darkbutton" style="margin-top:20px;">Add to cart</div>
+                                </div>
+                              </div>
+                              
+                            
                         </div>
                     </div>
                 </div>
@@ -98,15 +140,24 @@
             <div class="row" style="align-items:flex-start;gap:30%;">
             <div class="bigtitle">Keyring.</div>
             <div class="column" style="margin-top:50px;">
-                <a>Home.</a>
+                <a href="main.html">Home.</a>
+                <a href="team.html">About Us.</a>
                 <a href="store.html">Store.</a>
-                <a>How to use.</a>
-                <a>How to works.</a>
+                <a href="features.html">How to use.</a>
+                <a href="learn.html">How it works.</a>
                 <a href="usecases.html">Use cases.</a>
-                <a href="conact.html">Contact us.</a>
+                <a href="contact.html">Contact us.</a>
             </div>
         </div>
         </div>
+
+
+
+        <!-- jquery cdn link (photogallery)  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- magnific popup js cdn link (photogallery) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 
 
     </body>
