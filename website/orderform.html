@@ -310,6 +310,7 @@
             }
             findtax = function(input){
                 let zip = "";
+                let url = 'https://sales-tax-rates1.p.rapidapi.com/v/api/?zip=' + document.querySelector("#zip").value;
                 if(document.getElementById("country").value == "USA"){
                     if(input.length == 5){
                         zip = input;   
@@ -353,7 +354,6 @@
 
 
             /* SALES TAX */
-            const url = 'https://sales-tax-rates1.p.rapidapi.com/v/api/?zip=' + document.querySelector("#zip").value;
 
             const options = {
                 method: 'GET',
@@ -384,7 +384,8 @@
                 checkphone(document.querySelector("#phone").value);
             })
             document.querySelector("#zip").addEventListener("keyup",function(){
-                findtax(document.querySelector("#zip").value);
+                if(document.querySelector("#zip").value.length ==5 )
+                    findtax(document.querySelector("#zip").value);
             })
             document.querySelector("#orderaction").addEventListener("click",function(){
                 window.open("https://docs.google.com/forms/d/e/1FAIpQLSfBAURC1R2nr4Ki9X_wH7vC7TpOZgk_bHe21BEP2pKxlM1G9A/viewform"); 
