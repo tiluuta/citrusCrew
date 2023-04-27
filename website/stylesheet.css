@@ -395,12 +395,12 @@ margin-top: -110px;
 /* Looping animation*/
 .loopbox{
     height:fit-content;
-    padding: 100px;
-    text-align: center;
+    padding: 20px;
+    text-align: left;
     background: linear-gradient(115.55deg, rgba(68, 68, 68, 0.22) 4.32%, #474646 97.06%);
 }
 video {
-    width: 600px;
+    width: 1500px;
     border-radius: 10px;
 
 }
