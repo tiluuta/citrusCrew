@@ -7,7 +7,68 @@
         <!-- ICONS -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
     </head>
-    <body style="background-color:black;">
+    <script>
+        var items=[];
+        var colors=[];
+        var materials=[];
+        var sizes=[];
+        var prices=[];
+
+        getCart = function(){
+            for(let j=0;j<localStorage.getItem("lastindex");j++){
+                console.log(localStorage.getItem("lastindex"));
+                items.push(localStorage.getItem("items[" + j + "]"));
+                colors.push(localStorage.getItem("colors[" + j + "]"));
+                materials.push(localStorage.getItem("materials[" + j + "]"));
+                sizes.push(localStorage.getItem("sizes[" + j + "]"));
+                prices.push(localStorage.getItem("prices[" + j + "]"));
+            }
+
+            showCart();
+        }
+
+        showCart = function(){
+            let html = "";
+            if(localStorage.getItem("lastindex") != null && localStorage.getItem("lastindex") > 0){
+                document.getElementById("clearAll").style.display = "inline";
+                for(let j=0;j<localStorage.getItem("lastindex");j++){
+                    html +="<div class='cartitem'><div class='row'>";
+                    html += "<div>Color: " + colors[j] + "</div>";
+                    html += "<div>Material: " + materials[j] + "</div>";
+                    html += "<div>Size: " + sizes[j] + "</div>";
+                    html += "</div><div>Price: " + prices[j] + "</div>";
+                    html += "</div>";
+                }
+                document.getElementById("cart").innerHTML += html;
+            } else{
+                html += "Your cart is empty";
+                document.getElementById("clearAll").style.display = "none";
+                document.querySelector(".deleteItem").style.display = "none";
+                document.getElementById("cart").innerHTML = html;
+            }
+        }
+
+        deleteItem = function(itemnum){
+            items = items.splice(itemnum,itemnum+1);
+            colors = colors.splice(itemnum,itemnum+1);
+            materials = materials.splice(itemnum,itemnum+1);
+            sizes = sizes.splice(itemnum,itemnum+1);
+            prices = prices.splice(itemnum,itemnum+1);
+
+            if(localStorage.getItem("lastindex") > 0)
+                document.getElementById("cart").innerHTML = "";
+            else
+                showCart();
+            localStorage.setItem("lastindex", localStorage.getItem("lastindex") - 1);
+            getCart();
+            
+            console.log("number of items in cart: " + localStorage.getItem("items[0]"));
+        }
+
+        
+        
+    </script>
+    <body style="background-color:black;" onload="getCart()">
         <div id="navbar">
             <span class="material-symbols-outlined icon">apps</span>
             <span class="material-symbols-outlined icon"><a href="orderform.html">shopping_cart</a></span>
@@ -23,9 +84,20 @@
             <div id="orderform">
             <div class="box" style="text-align:left;">
                 <h1>Cart</h1>
-                <p>Change customization</p>
-                <p>Increase/Decrease quantity</p>
-                <p>Remove from cart</p>
+                <div id="cart">
+                    <!-- CONTAINER FOR ITEMS IN CART -->
+                </div>
+                <div class="deleteItem">Delete last item</div>
+                <div id="clearAll">Clear cart</div>
+                <script>
+                    document.getElementById("clearAll").addEventListener("click",function(){
+                        localStorage.clear();
+                        showCart();
+                    })
+                    document.querySelector(".deleteItem").addEventListener("click",function(){
+                        deleteItem(localStorage.getItem("lastindex"));
+                    })
+                </script>
             </div>
 
             <br>
@@ -66,7 +138,7 @@
 
             <div class="box" style="text-align:left;">
                 <h1>Order Summary</h1>
-                <p id="subtotal">Subtotal: </p>
+                <p id="subtotal">Subtotal: $0</p>
                 <p id="tax">Tax: <em>Calculating...</em></p>
                 <p>Shipping fee: $5</p>
                 <p id="total">Total Calculation: <em>Calculating...</em></p>
@@ -84,79 +156,105 @@
         </div>
 
         <script>
-            const sum = 20.0;
-            var statename = [];
-            var stateabbr = [];
+            var sum = 20.0;
 
-            fetch("./georef-united-states-of-america-state.json")
+            autocountry = function(input){
+                if(input.charAt(0) == "C"){
+                    document.getElementById("country").value = "CANADA";
+                    document.querySelector("#state").placeholder = "Province Code";
+                    document.querySelector("#validzip").innerHTML = "Calculated tax rates are not available for this country.";
+                    document.getElementById("tax").innerHTML = "Tax: 0% (Not calculated)";
+                    document.getElementById("zip").placeholder = "6-Digit ZIP";
+                } else if(input.charAt(0) == "M"){
+                    document.getElementById("country").value = "MEXICO";
+                    document.querySelector("#state").placeholder = "State Code";
+                    document.querySelector("#validzip").innerHTML = "Calculated tax rates are not available for this country.";
+                    document.getElementById("tax").innerHTML = "Tax: 0% (Not calculated)";
+                    document.getElementById("zip").placeholder = "5-Digit ZIP";
+                }
+                else if(input.charAt(0) == "U"){
+                    document.querySelector("#state").placeholder = "State";
+                    document.getElementById("country").value = "USA";
+                    document.getElementById("tax").innerHTML = "Tax: <em>Calculating...</em>";
+                    document.querySelector("#validzip").innerHTML = "";
+                    document.getElementById("zip").placeholder = "5-Digit ZIP";
+                } else{
+                    document.querySelector("#validzip").innerHTML = "Calculated tax rates are not available for this country.";
+                }
+            }
+
+            autostate = function(){
+                if(document.getElementById("country").value == "USA"){
+                fetch("./georef-united-states-of-america-state.json")
                     .then(function(response) {
                         return response;
                     })
                     .then(function(data) {
                         return data.json();
                     })
-                    .then((data) => {
-                        for(let i=0; i < 50; i++){
-                            console.log(data);
-                            statename.push([i, `${data.ste_name}` [i]]);
-                            stateabbr.push([i, `${data.ste_stusps_code}` [i]]);
+                    .then(function (Normal) {
+                    const statename = Normal.map(
+                        (data) => `${data.ste_name}`
+                    );
+                    const stateabbr = Normal.map(
+                        (data) => `${data.ste_stusps_code}`
+                    );
+                        
+                    for(let i=0;i<50;i++){
+                        if(document.getElementById("state").value.toUpperCase() == statename[i].toUpperCase()){
+                            document.getElementById("state").value = stateabbr[i];
                         }
-                    })
+                    }
+                })
                     .catch(err => console.error(err));
-
-                    /*.then(function(response) {
+            } else if(document.getElementById("country").value == "MEXICO"){
+                fetch("./georef-mexico-state-millesime@public.json")
+                    .then(function(response) {
                         return response;
                     })
                     .then(function(data) {
                         return data.json();
                     })
                     .then(function (Normal) {
-                        const html = Normal.map(
-                            (data) => `<div class="box">
-                            <h1 class="cost">${data.cost}</h1>
-                            <h1>${data.productservice}</h1>
-                            <p>${data.description}</p>
-                            <br>
-                            <p><em>Sponsored by ${data.sponsor}</em></p>
-                        </div>`
-                        );
-                        document.getElementById("maincontainer").innerHTML = html;
+                    const statename = Normal.map(
+                        (data) => `${data.sta_name}`
+                    );
+                    const stateabbr = Normal.map(
+                        (data) => `${data.sta_code}`
+                    );
+
+                        
+                    for(let i=0;i<127;i++){
+                        if(document.getElementById("state").value.toUpperCase() == statename[i].toUpperCase()){
+                            document.getElementById("state").value = stateabbr[i];
+                        }
+                }
+                })
+                    .catch(err => console.error(err));
+                } else if(document.getElementById("country").value == "CANADA"){
+                fetch("./georef-canada-province@public.json")
+                    .then(function(response) {
+                        return response;
                     })
-                    .catch(function(err) {
-                        console.log("Fetch problem show: " + err.message);
+                    .then(function(data) {
+                        return data.json();
+                    })
+                    .then(function (Normal) {
+                    const statename = Normal.map(
+                        (data) => `${data.prov_name_fr}`
+                    );
+                    const stateabbr = Normal.map(
+                        (data) => `${data.prov_code}`
+                    );
+                    for(let i=0;i<12;i++){
+                        if(document.getElementById("state").value.toUpperCase() == statename[i].toUpperCase()){
+                            document.getElementById("state").value = stateabbr[i];
+                        }
                     }
-                    );*/
-                
 
-            autocountry = function(input){
-                if(input.charAt(0) == "C"){
-                    document.getElementById("country").value = "CANADA";
-                    document.querySelector("#state").placeholder = "Province/Territory";
-                    document.querySelector("#validzip").innerHTML = "Calculated tax rates are not available for this country.";
-                    document.getElementById("subtotal").innerHTML = totalcalc(sum,0);
-                    document.getElementById("tax").innerHTML = "Tax: 0%";
-                } else if(input.charAt(0) == "M"){
-                    document.getElementById("country").value = "MEXICO";
-                    document.querySelector("#state").placeholder = "State";
-                    document.querySelector("#validzip").innerHTML = "Calculated tax rates are not available for this country.";
-                    document.getElementById("subtotal").innerHTML = totalcalc(sum,0);
-                    document.getElementById("tax").innerHTML = "Tax: 0%";
-                }
-                else if(input.charAt(0) == "U"){
-                    document.querySelector("#zip").style.display = "inline";
-                    document.querySelector("#state").placeholder = "State";
-                    document.getElementById("country").value = "USA";
-                } else{
-                    document.getElementById("subtotal").innerHTML = totalcalc(sum,0);
-                    document.querySelector("#validzip").innerHTML = "Calculated tax rates are not available for this country.";
-                    document.getElementById("tax").innerHTML = "Tax: 0%";
-                }
+                })
+                    .catch(err => console.error(err));
             }
-
-            autostate = function(){
-                if(document.getElementById("country").value == "USA"){
-                    document.querySelector("#state").value.substr(0,1)
-                }
             }
 
             removespaces = function(input){
@@ -212,47 +310,50 @@
             }
             findtax = function(input){
                 let zip = "";
-                if(input.length == 5){
-                    zip = input;   
-                    
-                    fetch(url,options)
-                        .then((response) => {
-                            return response.json();
-                        })
-                        .then((data) => {
-                            console.log(data);
-                            let taxhtml = '';
+                let url = 'https://sales-tax-rates1.p.rapidapi.com/v/api/?zip=' + document.querySelector("#zip").value;
+                if(document.getElementById("country").value == "USA"){
+                    if(input.length == 5){
+                        zip = input;   
+                        
+                        fetch(url,options)
+                            .then((response) => {
+                                return response.json();
+                            })
+                            .then((data) => {
+                                console.log(data);
+                                let taxhtml = '';
 
-                            const taxrate = `${data.data.combined_rate}`;
-                            const statehtml = `${data.data.state}`;
-                            const regionhtml = `${data.data.region}`;
-                            taxhtml += taxrate;
+                                const taxrate = `${data.data.combined_rate}`;
+                                const statehtml = `${data.data.state}`;
+                                const regionhtml = `${data.data.region}`;
+                                taxhtml += taxrate;
 
-                            document.getElementById("total").innerHTML = "Total Calculation: $" + totalcalc(sum,taxrate);
+                                totalcalc(sum,taxrate);
 
 
-                            document.getElementById("tax").innerHTML = "Tax: " + taxhtml + "%";
-                            document.getElementById("state").value = statehtml;
-                            document.getElementById("region").value = regionhtml;
-                        })
-                        .catch(err => console.error(err));
-                }
+                                document.getElementById("tax").innerHTML = "Tax: " + taxhtml + "%";
+                                document.getElementById("state").value = statehtml;
+                                document.getElementById("region").value = regionhtml;
+                            })
+                            .catch(err => console.error(err));
+                    }
+            }
             }
 
             totalcalc = function(sum,taxrate){
+                let totalsum = sum;
                 document.getElementById("subtotal").innerHTML = "Subtotal: $" + sum;
-                if(taxrate != 0){
-                    let totalsum = sum * (parseFloat(taxrate) / 100);
-                    totalsum += sum;
-                    totalsum += 5.00;
-                }
-                return totalsum;
+                    if(taxrate != 0){
+                        totalsum = sum * (parseFloat(taxrate) / 100);
+                        totalsum += sum;
+                        totalsum += 5.00;
+                    }
+                document.getElementById("total").innerHTML = "Total Calculation: $" + totalsum;
             }
 
 
 
             /* SALES TAX */
-            const url = 'https://sales-tax-rates1.p.rapidapi.com/v/api/?zip=' + document.querySelector("#zip").value;
 
             const options = {
                 method: 'GET',
@@ -263,6 +364,7 @@
                 }
             };
 
+            totalcalc(sum,0);
             document.querySelector("#country").addEventListener("keyup",function(){
                 document.querySelector("#country").value = document.querySelector("#country").value.toUpperCase();
                 if((this).value == "U" || (this).value == "M" || (this).value == "C"){
@@ -273,12 +375,17 @@
                 document.querySelector("#email").value = removespaces(document.querySelector("#email").value);
                 checkemail(document.querySelector("#email").value);
             })
+            document.querySelector("#state").addEventListener("keyup",function(){
+                document.querySelector("#state").value = removespaces(document.querySelector("#state").value);
+                autostate(document.querySelector("#state").value);
+            })
             document.querySelector("#phone").addEventListener("keyup",function(){
                 document.querySelector("#phone").value = removespaces(document.querySelector("#phone").value);
                 checkphone(document.querySelector("#phone").value);
             })
             document.querySelector("#zip").addEventListener("keyup",function(){
-                findtax(document.querySelector("#zip").value);
+                if(document.querySelector("#zip").value.length ==5 )
+                    findtax(document.querySelector("#zip").value);
             })
             document.querySelector("#orderaction").addEventListener("click",function(){
                 window.open("https://docs.google.com/forms/d/e/1FAIpQLSfBAURC1R2nr4Ki9X_wH7vC7TpOZgk_bHe21BEP2pKxlM1G9A/viewform"); 

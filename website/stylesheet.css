@@ -92,6 +92,11 @@ span a{
     font-size:20pt;
     margin-bottom:-20px;
 }
+.midtitle{
+    font-size: 80pt;
+    color: #565656;
+    margin-bottom:100px;
+}
 
 /* BUTTONS */
 .roundbutton{
@@ -212,6 +217,44 @@ input[type="submit"] {
     font-size: 65pt;
 }
 
+/* ORDER PAGE */
+#orderform input[type="text"],
+#orderform input[type="email"],
+#orderform textarea {
+  width: 100%;
+  font-size: 12pt;
+  background-color:rgba(255, 255, 255, 0);
+  line-height:40px;
+  border-width: 0 0 2px 0;
+  border-style:solid;
+  border-color: black;
+  
+}
+
+/* ABOUT TEAM */
+.profile{
+    border-radius:20px;
+    height:300px;
+    width:250px;
+    background-size:100% 100%;
+}
+.bio{
+    text-align:center;
+    padding:20px 0px 80px 0px;
+}
+.whitedesc{
+    color:white;
+    font-size:25px;
+    text-align:center;
+    width:50%;
+    margin:auto;
+    margin-top:150px;
+    margin-bottom:100px;
+}
+.team{
+    gap:8vw;
+}
+
 /* photogallery */
 
 
@@ -266,6 +309,30 @@ input[type="submit"] {
 .gallery .image-container .image:hover img{
     transform: scale(1.1);
 } 
+
+.bottombox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+.bottombox img{
+    margin-left: 15%;
+    margin-right: 10%;
+    margin-top: 80px;
+    width: 70%;
+    display: block;
+    border-radius: 10%;
+}
+
+/* CART */
+.cartitem{
+    background-color:white;
+}
+.deleteItem{
+    color:red;
+}
 
 
 
