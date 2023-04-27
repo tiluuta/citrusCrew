@@ -80,8 +80,8 @@
                           
                             <div class="product-customization">
                                 <div class="product-image">
-                                    <a href="White-Resin.PNG" class="image" id="ring-image">
-                                        <img src="White-Resin.PNG" alt="">
+                                    <a href="White-Resin.PNG" class="image">
+                                        <img id="ring-image" src="White-Resin.PNG" alt="">
                                     </a>
                                 </div>
                                 <div class="product-details">
@@ -127,6 +127,21 @@
                                   <button id="addtocart" style="margin-top:20px;">Add to cart</button>
                                 </div>
                               </div>
+
+                              <script>
+
+                                document.getElementById("addtocart").addEventListener("click",function(){
+                                    if(document.getElementById("ring-size").value =="default-size"){
+                                        alert("Please select a size.");
+                                    } else{
+                                        let color = document.getElementById("ring-color").value;
+                                        let material = document.getElementById("ring-material").value;
+                                        let size = document.getElementById("ring-size").value;
+                                        let price = document.getElementById("ring-price").innerHTML;
+                                        storeProduct(color, material, size, price);
+                                    }
+                                })
+                              </script>
                               
                         </div>
                     </div>
