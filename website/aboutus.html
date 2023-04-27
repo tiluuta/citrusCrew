@@ -12,22 +12,25 @@
                 color: #565656;
             }
             .image-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-}
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+            }
 
-.image-grid img {
-  width: 30%;
-  margin: 1%;
-  border-radius: 10%;
-}
+            .image-grid img {
+                width: 30%;
+                margin: 1%;
+                border-radius: 10%;
+            }
 
 @media screen and (max-width: 768px) {
   .image-grid img {
     width: 45%;
     margin: 2.5%;
+  }
+  .row{
+    flex-direction:column;
   }
 }
 
@@ -95,14 +98,33 @@
             <div class="darkcontainer">
                 <div class="midtitle">Meet the Team.</div>
                 <br>
-                <div class="image-grid">
-                    <img src="college dropout cover.jpeg" alt="Image 1">
-                    <img src="Graduation album cover.jpeg" alt="Image 2">
-                    <img src="to pimp a butterfly.jpeg" alt="Image 3">
-                    <img src="dookie album.jpeg" alt="Image 4">
-                    <img src="doop wops and hooligans.jpeg" alt="Image 5">
-                    <img src="doggystyle.jpeg" alt="Image 6">
-                  </div>
+
+                  <div style="width:fit-content;margin:auto;">
+                    <div class="row" style="gap:100px;">
+                        <div>
+                            <a href="https://www.linkedin.com/in/henrydwarren/" target="_new"><div class="profile" style="background-image:url('http://webdev.iyaclasses.com/~hdwarren/acad275/portfolio-content-final/lmfao.png')"></div></a>
+                            <div class="bio">Henry Warren</div>
+                        </div>
+                        <div>
+                            <a href="https://www.linkedin.com/in/jacqueline-sung-83b540248/" target="_new"><div class="profile" style="background-image:url('http://iyawebdev.com/acad275b/20231/jksung.jpg')"></div></a>
+                            <div class="bio">Jacqueline Sung</div>
+                        </div>
+                        <div>
+                            <a href="https://www.linkedin.com/in/rory-an/" target="_new"><div class="profile" style="background-image:url('http://iyawebdev.com/acad275b/20231/roryan.jpg')"></div></a>
+                            <div class="bio">Rory An</div>
+                        </div>
+                    </div>
+                    <div class="row" style="justify-content:center;gap:100px;">
+                        <div>
+                            <a href="https://www.linkedin.com/in/sheila-wang-14453b1b1/" target="_new"><div class="profile" style="background-image:url('http://iyawebdev.com/acad275a/20231/wangshei.jpg')"></div></a>
+                            <div class="bio">Sheila Wang</div>
+                        </div>
+                        <div>
+                            <a href="https://www.linkedin.com/in/henrygroome/" target="_new"><div class="profile" style="background-image:url('http://iyawebdev.com/acad275a/20231/hgroome.jpg')"></div></a>
+                            <div class="bio">Henry Groome</div>
+                        </div>
+                    </div>
+                </div>
 
                 
             </div>
@@ -114,7 +136,7 @@
                     </div>
                     <div class="bottombox">
 
-                    <img src="doggystyle.jpeg" alt="Image 7">
+                    <img src="behindthescenes.jpeg" alt="Jacqueline and Rory molding Keyrings">
                 </div>
                 
             </div>
@@ -123,12 +145,13 @@
             <div class="row" style="align-items:flex-start;gap:30%;">
             <div class="bigtitle">Keyring.</div>
             <div class="column" style="margin-top:50px;">
-                <a>Home.</a>
+                <a href="main.html">Home.</a>
+                <a href="team.html">About Us.</a>
                 <a href="store.html">Store.</a>
-                <a>How to use.</a>
-                <a>How to works.</a>
+                <a href="features.html">How to use.</a>
+                <a href="learn.html">How it works.</a>
                 <a href="usecases.html">Use cases.</a>
-                <a href="conact.html">Contact us.</a>
+                <a href="contact.html">Contact us.</a>
             </div>
         </div>
         </div>
