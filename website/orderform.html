@@ -7,9 +7,70 @@
         <!-- ICONS -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
     </head>
-    <body style="background-color:black;">
+    <script>
+        var items=[];
+        var colors=[];
+        var materials=[];
+        var sizes=[];
+        var prices=[];
+
+        getCart = function(){
+            for(let j=0;j<localStorage.getItem("lastindex");j++){
+                console.log(localStorage.getItem("lastindex"));
+                items.push(localStorage.getItem("items[" + j + "]"));
+                colors.push(localStorage.getItem("colors[" + j + "]"));
+                materials.push(localStorage.getItem("materials[" + j + "]"));
+                sizes.push(localStorage.getItem("sizes[" + j + "]"));
+                prices.push(localStorage.getItem("prices[" + j + "]"));
+            }
+
+            showCart();
+        }
+
+        showCart = function(){
+            let html = "";
+            if(localStorage.getItem("lastindex") != null && localStorage.getItem("lastindex") > 0){
+                document.getElementById("clearAll").style.display = "inline";
+                for(let j=0;j<localStorage.getItem("lastindex");j++){
+                    html +="<div class='cartitem'><div class='row'>";
+                    html += "<div>Color: " + colors[j] + "</div>";
+                    html += "<div>Material: " + materials[j] + "</div>";
+                    html += "<div>Size: " + sizes[j] + "</div>";
+                    html += "</div><div>Price: " + prices[j] + "</div>";
+                    html += "</div>";
+                }
+                document.getElementById("cart").innerHTML += html;
+            } else{
+                html += "Your cart is empty";
+                document.getElementById("clearAll").style.display = "none";
+                document.querySelector(".deleteItem").style.display = "none";
+                document.getElementById("cart").innerHTML = html;
+            }
+        }
+
+        deleteItem = function(itemnum){
+            items = items.splice(itemnum,itemnum+1);
+            colors = colors.splice(itemnum,itemnum+1);
+            materials = materials.splice(itemnum,itemnum+1);
+            sizes = sizes.splice(itemnum,itemnum+1);
+            prices = prices.splice(itemnum,itemnum+1);
+
+            if(localStorage.getItem("lastindex") > 0)
+                document.getElementById("cart").innerHTML = "";
+            else
+                showCart();
+            localStorage.setItem("lastindex", localStorage.getItem("lastindex") - 1);
+            getCart();
+            
+            console.log("number of items in cart: " + localStorage.getItem("items[0]"));
+        }
+
+        
+        
+    </script>
+    <body style="background-color:black;" onload="getCart()">
         <div id="navbar">
-            <span class="material-symbols-outlined icon">apps</span>
+            <span class="material-symbols-outlined icon"><a href="main.html">apps</a></span>
             <span class="material-symbols-outlined icon"><a href="orderform.html">shopping_cart</a></span>
             <span class="material-symbols-outlined icon"><a href="contact.html">contact_support</a></span>
         </div>
@@ -23,9 +84,20 @@
             <div id="orderform">
             <div class="box" style="text-align:left;">
                 <h1>Cart</h1>
-                <p>Change customization</p>
-                <p>Increase/Decrease quantity</p>
-                <p>Remove from cart</p>
+                <div id="cart">
+                    <!-- CONTAINER FOR ITEMS IN CART -->
+                </div>
+                <div class="deleteItem">Delete last item</div>
+                <div id="clearAll">Clear cart</div>
+                <script>
+                    document.getElementById("clearAll").addEventListener("click",function(){
+                        localStorage.clear();
+                        showCart();
+                    })
+                    document.querySelector(".deleteItem").addEventListener("click",function(){
+                        deleteItem(localStorage.getItem("lastindex"));
+                    })
+                </script>
             </div>
 
             <br>
@@ -34,26 +106,31 @@
                 <h1>Contact</h1>
                 <form method="post" action="action.php">
                     <div class="row">
-                        <input type="text" placeholder="First Name">
-                        <input type="text" placeholder="Last Name">
+                        <input type="text" placeholder="First Name" required="1">
+                        <input type="text" placeholder="Last Name" required="1">
                     </div>
                     <input type="text" placeholder="Valid Email Address" id="email" required="1">
                     <div class="error" id="validemail"></div>
+                    <div class="error" id="validadd" style="padding-left:20pt;"></div>
+                    <div class="error" id="validdom" style="padding-left:20pt;"></div>
                     <input type="text" placeholder="Phone Number (Optional)" id="phone">
                     <div class="error" id="validphone"></div>
-                    
+                    <div class="error" id="validarea" style="padding-left:20pt;"></div>
+                    <div class="error" id="validdig" style="padding-left:20pt;"></div>
 
                     
                 </form>
                 <br>
                 <h1>Shipping</h1>
-                    <input type="text" style="width:100%;" placeholder="Address 1">
+                    <input type="text" style="width:100%;" placeholder="Address 1" required="1">
                     <input type="text" style="width:100%;" placeholder="Address 2 (Optional)">
                     <div class="row">
-                        <input type="text" placeholder="City">
+                        <input type="text" placeholder="Country" id="country">
                         <input type="text" placeholder="State" id="state">
+                        <input type="text" placeholder="City" id="region">
                         <input type="text" placeholder="ZIP Code" id="zip">
                     </div>
+                    <div class="error" id="validzip"></div>
                     <br>
             </div>
 
@@ -61,9 +138,12 @@
 
             <div class="box" style="text-align:left;">
                 <h1>Order Summary</h1>
+                <p id="subtotal">Subtotal: $0</p>
                 <p id="tax">Tax: <em>Calculating...</em></p>
                 <p>Shipping fee: $5</p>
                 <p id="total">Total Calculation: <em>Calculating...</em></p>
+
+                <br>
 
                 <div class="row" style="text-align:center;">
                     <div class="darkbutton" style="margin-top:50px;width:100px;" id="orderaction">Order Now</div>
@@ -76,68 +156,204 @@
         </div>
 
         <script>
+            var sum = 20.0;
+
+            autocountry = function(input){
+                if(input.charAt(0) == "C"){
+                    document.getElementById("country").value = "CANADA";
+                    document.querySelector("#state").placeholder = "Province Code";
+                    document.querySelector("#validzip").innerHTML = "Calculated tax rates are not available for this country.";
+                    document.getElementById("tax").innerHTML = "Tax: 0% (Not calculated)";
+                    document.getElementById("zip").placeholder = "6-Digit ZIP";
+                } else if(input.charAt(0) == "M"){
+                    document.getElementById("country").value = "MEXICO";
+                    document.querySelector("#state").placeholder = "State Code";
+                    document.querySelector("#validzip").innerHTML = "Calculated tax rates are not available for this country.";
+                    document.getElementById("tax").innerHTML = "Tax: 0% (Not calculated)";
+                    document.getElementById("zip").placeholder = "5-Digit ZIP";
+                }
+                else if(input.charAt(0) == "U"){
+                    document.querySelector("#state").placeholder = "State";
+                    document.getElementById("country").value = "USA";
+                    document.getElementById("tax").innerHTML = "Tax: <em>Calculating...</em>";
+                    document.querySelector("#validzip").innerHTML = "";
+                    document.getElementById("zip").placeholder = "5-Digit ZIP";
+                } else{
+                    document.querySelector("#validzip").innerHTML = "Calculated tax rates are not available for this country.";
+                }
+            }
+
+            autostate = function(){
+                if(document.getElementById("country").value == "USA"){
+                fetch("./georef-united-states-of-america-state.json")
+                    .then(function(response) {
+                        return response;
+                    })
+                    .then(function(data) {
+                        return data.json();
+                    })
+                    .then(function (Normal) {
+                    const statename = Normal.map(
+                        (data) => `${data.ste_name}`
+                    );
+                    const stateabbr = Normal.map(
+                        (data) => `${data.ste_stusps_code}`
+                    );
+                        
+                    for(let i=0;i<50;i++){
+                        if(document.getElementById("state").value.toUpperCase() == statename[i].toUpperCase()){
+                            document.getElementById("state").value = stateabbr[i];
+                        }
+                    }
+                })
+                    .catch(err => console.error(err));
+            } else if(document.getElementById("country").value == "MEXICO"){
+                fetch("./georef-mexico-state-millesime@public.json")
+                    .then(function(response) {
+                        return response;
+                    })
+                    .then(function(data) {
+                        return data.json();
+                    })
+                    .then(function (Normal) {
+                    const statename = Normal.map(
+                        (data) => `${data.sta_name}`
+                    );
+                    const stateabbr = Normal.map(
+                        (data) => `${data.sta_code}`
+                    );
+
+                        
+                    for(let i=0;i<127;i++){
+                        if(document.getElementById("state").value.toUpperCase() == statename[i].toUpperCase()){
+                            document.getElementById("state").value = stateabbr[i];
+                        }
+                }
+                })
+                    .catch(err => console.error(err));
+                } else if(document.getElementById("country").value == "CANADA"){
+                fetch("./georef-canada-province@public.json")
+                    .then(function(response) {
+                        return response;
+                    })
+                    .then(function(data) {
+                        return data.json();
+                    })
+                    .then(function (Normal) {
+                    const statename = Normal.map(
+                        (data) => `${data.prov_name_fr}`
+                    );
+                    const stateabbr = Normal.map(
+                        (data) => `${data.prov_code}`
+                    );
+                    for(let i=0;i<12;i++){
+                        if(document.getElementById("state").value.toUpperCase() == statename[i].toUpperCase()){
+                            document.getElementById("state").value = stateabbr[i];
+                        }
+                    }
+
+                })
+                    .catch(err => console.error(err));
+            }
+            }
 
             removespaces = function(input){
                 input = input.replace(/ /g, "");
                 return input;
             }
-            function removecharacters(input){
+            removecharacters = function(input){
                 input = input.replace(/,/g, "");
                 input = input.replace(/\./g,"");
                 return input;
             }
             checkemail = function(input){
                 let atposition = input.indexOf("@");
-                if (atposition < 0 || input.indexOf(".",atposition) < 0){
-                    document.querySelector("#validemail").innerHTML = "Please enter a valid email address with a domain.";
-                } else
-                document.querySelector("#validemail").innerHTML = "";
+                if (atposition <= 0 || input.indexOf(".",atposition) <= 0){
+                    document.querySelector("#validemail").innerHTML = "Your email address is missing: ";
+                    if(atposition <= 0){
+                        document.querySelector("#validadd").innerHTML = "an address (@)";
+                    } else{
+                        document.querySelector("#validadd").innerHTML = "";
+                    }
+                    if(input.indexOf(".",atposition) <= 0){
+                        document.querySelector("#validdom").innerHTML = "a domain (.com, .edu, etc)";
+                    } else{
+                        document.querySelector("#validdom").innerHTML = "";
+                    }
+                } else{
+                    document.querySelector("#validadd").innerHTML = "";
+                    document.querySelector("#validdom").innerHTML = "";
+                    document.querySelector("#validemail").innerHTML = "";
+                }
+                
             }
             checkphone = function(input){
-                let atposition = input.indexOf("(");
-                if (atposition < 0 || input.indexOf(")",atposition) < 0 || input.indexOf("-") != 8){
-                    document.querySelector("#validphone").innerHTML = "Please enter a phone number with the format (***)***-****.";
-                } else
-                document.querySelector("#validphone").innerHTML = "";
+                let parposition = input.indexOf("(");
+                if (parposition < 0 || input.indexOf(")",parposition) <= 3 || input.indexOf("-") < 8 || input.charAt(12) == "" || input.charAt(13) != ""){
+                    document.querySelector("#validphone").innerHTML = "Please enter a phone number with the format (XXX)XXX-XXXX. Your phone number is missing: ";
+                    if(parposition < 0 || input.indexOf(")",parposition) <= 3){
+                        document.querySelector("#validarea").innerHTML = "an area code in the format (XXX)";
+                    } else{
+                        document.querySelector("#validarea").innerHTML = "";
+                    }
+                    if(input.indexOf("-") < 8 || input.charAt(12) == "" || input.charAt(13) != ""){
+                        document.querySelector("#validdig").innerHTML = "3 exchange numbers followed by a dash (-) and 4 digits";
+                    } else{
+                        document.querySelector("#validdig").innerHTML = "";
+                    }
+
+                } else{
+                    document.querySelector("#validarea").innerHTML = "";
+                    document.querySelector("#validdig").innerHTML = "";
+                    document.querySelector("#validphone").innerHTML = "";
+                }
             }
             findtax = function(input){
                 let zip = "";
-                if(input.length == 5){
-                    zip = input;   
-                    
-                    fetch(url,options)
-                        .then((response) => {
-                            return response.json();
-                        })
-                        .then((data) => {
-                            console.log(data);
-                            let taxhtml = '';
+                let url = 'https://sales-tax-rates1.p.rapidapi.com/v/api/?zip=' + document.querySelector("#zip").value;
+                if(document.getElementById("country").value == "USA"){
+                    if(input.length == 5){
+                        zip = input;   
+                        
+                        fetch(url,options)
+                            .then((response) => {
+                                return response.json();
+                            })
+                            .then((data) => {
+                                console.log(data);
+                                let taxhtml = '';
 
-                            const taxrate = `${data.data.combined_rate}`;
-                            taxhtml += taxrate;
+                                const taxrate = `${data.data.combined_rate}`;
+                                const statehtml = `${data.data.state}`;
+                                const regionhtml = `${data.data.region}`;
+                                taxhtml += taxrate;
 
-                            let sum = 20.0;
-                            document.getElementById("total").innerHTML = "Total Calculation: $" + totalcalc(sum,taxrate);
+                                totalcalc(sum,taxrate);
 
 
-                            document.getElementById("tax").innerHTML = "Tax: " + taxhtml + "%";
-                        })
-                        .catch(err => console.error(err));
-
-                }
+                                document.getElementById("tax").innerHTML = "Tax: " + taxhtml + "%";
+                                document.getElementById("state").value = statehtml;
+                                document.getElementById("region").value = regionhtml;
+                            })
+                            .catch(err => console.error(err));
+                    }
+            }
             }
 
             totalcalc = function(sum,taxrate){
-                let totalsum = sum * (parseFloat(taxrate) / 100);
-                totalsum += sum;
-                totalsum += 5.00;
-                return totalsum;
+                let totalsum = sum;
+                document.getElementById("subtotal").innerHTML = "Subtotal: $" + sum;
+                    if(taxrate != 0){
+                        totalsum = sum * (parseFloat(taxrate) / 100);
+                        totalsum += sum;
+                        totalsum += 5.00;
+                    }
+                document.getElementById("total").innerHTML = "Total Calculation: $" + totalsum;
             }
 
 
 
             /* SALES TAX */
-            const url = 'https://sales-tax-rates1.p.rapidapi.com/v/api/?zip=' + document.querySelector("#zip").value;
 
             const options = {
                 method: 'GET',
@@ -147,16 +363,29 @@
                     'X-RapidAPI-Host': 'sales-tax-rates1.p.rapidapi.com'
                 }
             };
-            
-            document.querySelector("#email").addEventListener("keypress",function(){
+
+            totalcalc(sum,0);
+            document.querySelector("#country").addEventListener("keyup",function(){
+                document.querySelector("#country").value = document.querySelector("#country").value.toUpperCase();
+                if((this).value == "U" || (this).value == "M" || (this).value == "C"){
+                    autocountry((this).value);
+                }
+            })
+            document.querySelector("#email").addEventListener("keyup",function(){
+                document.querySelector("#email").value = removespaces(document.querySelector("#email").value);
                 checkemail(document.querySelector("#email").value);
             })
-            document.querySelector("#phone").addEventListener("keypress",function(){
+            document.querySelector("#state").addEventListener("keyup",function(){
+                document.querySelector("#state").value = removespaces(document.querySelector("#state").value);
+                autostate(document.querySelector("#state").value);
+            })
+            document.querySelector("#phone").addEventListener("keyup",function(){
                 document.querySelector("#phone").value = removespaces(document.querySelector("#phone").value);
                 checkphone(document.querySelector("#phone").value);
             })
-            document.querySelector("#zip").addEventListener("input",function(){
-                findtax(document.querySelector("#zip").value);
+            document.querySelector("#zip").addEventListener("keyup",function(){
+                if(document.querySelector("#zip").value.length ==5 )
+                    findtax(document.querySelector("#zip").value);
             })
             document.querySelector("#orderaction").addEventListener("click",function(){
                 window.open("https://docs.google.com/forms/d/e/1FAIpQLSfBAURC1R2nr4Ki9X_wH7vC7TpOZgk_bHe21BEP2pKxlM1G9A/viewform"); 
