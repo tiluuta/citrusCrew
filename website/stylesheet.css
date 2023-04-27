@@ -212,6 +212,41 @@ input[type="submit"] {
     font-size: 65pt;
 }
 
+/* ORDER PAGE */
+#orderform input[type="text"],
+#orderform input[type="email"],
+#orderform textarea {
+  width: 100%;
+  font-size: 12pt;
+  background-color:rgba(255, 255, 255, 0);
+  line-height:40px;
+  border-width: 0 0 2px 0;
+  border-style:solid;
+  border-color: black;
+  
+}
+
+/* ABOUT TEAM */
+.profile{
+    background-color:black;
+    border-radius:20px;
+    height:300px;
+    width:250px;
+}
+.bio{
+    text-align:center;
+    padding:20px 0px 80px 0px;
+}
+.whitedesc{
+    color:white;
+    font-size:25px;
+    text-align:center;
+    width:50%;
+    margin:auto;
+    margin-top:150px;
+    margin-bottom:100px;
+}
+
 /* photogallery */
 
 
