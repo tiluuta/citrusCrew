@@ -29,7 +29,7 @@
 
         showCart = function(){
             let html = "";
-            if(localStorage.getItem("lastindex") != null && localStorage.getItem("lastindex") > -1){
+            if(localStorage.getItem("lastindex") != null && localStorage.getItem("lastindex") > 0){
                 document.getElementById("clearAll").style.display = "inline";
                 for(let j=0;j<localStorage.getItem("lastindex");j++){
                     html +="<div class='cartitem'><div class='row'>";
@@ -37,30 +37,32 @@
                     html += "<div>Material: " + materials[j] + "</div>";
                     html += "<div>Size: " + sizes[j] + "</div>";
                     html += "</div><div>Price: " + prices[j] + "</div>";
-                    html += "<div class='deleteItem'>Remove from cart</div></div>";
+                    html += "</div>";
                 }
                 document.getElementById("cart").innerHTML += html;
             } else{
                 html += "Your cart is empty";
                 document.getElementById("clearAll").style.display = "none";
+                document.querySelector(".deleteItem").style.display = "none";
                 document.getElementById("cart").innerHTML = html;
             }
         }
 
         deleteItem = function(itemnum){
-            console.log(localStorage.getItem("lastindex"));
             items = items.splice(itemnum,itemnum+1);
             colors = colors.splice(itemnum,itemnum+1);
             materials = materials.splice(itemnum,itemnum+1);
             sizes = sizes.splice(itemnum,itemnum+1);
             prices = prices.splice(itemnum,itemnum+1);
 
+            if(localStorage.getItem("lastindex") > 0)
+                document.getElementById("cart").innerHTML = "";
+            else
+                showCart();
             localStorage.setItem("lastindex", localStorage.getItem("lastindex") - 1);
             getCart();
             
-            showCart();
-            console.log(localStorage.getItem("lastindex"));
-            console.log(localStorage.getItem("items[0]"));
+            console.log("number of items in cart: " + localStorage.getItem("items[0]"));
         }
 
         
@@ -85,15 +87,16 @@
                 <div id="cart">
                     <!-- CONTAINER FOR ITEMS IN CART -->
                 </div>
+                <div class="deleteItem">Delete last item</div>
                 <div id="clearAll">Clear cart</div>
                 <script>
                     document.getElementById("clearAll").addEventListener("click",function(){
                         localStorage.clear();
                         showCart();
                     })
-                    /*document.querySelector(".deleteItem").addEventListener("click",function(){
-                        deleteItem(0);
-                    })*/
+                    document.querySelector(".deleteItem").addEventListener("click",function(){
+                        deleteItem(localStorage.getItem("lastindex"));
+                    })
                 </script>
             </div>
 

@@ -47,11 +47,11 @@ function updateProduct() {
 
     console.log("i:" + i);
     console.log("lastindex:" + localStorage.getItem("lastindex"));
-    items.push(i);
-    colors.push(color);
-    materials.push(material);
-    sizes.push(size);
-    prices.push(price);
+    items[i] = i;
+    colors[i] = color;
+    materials[i] = material;
+    sizes[i] = size;
+    prices[i] = price;
     console.log(items[i]);
     console.log(colors[i]);
     console.log(sizes[i]);
