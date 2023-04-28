@@ -91,10 +91,9 @@
                 <h1>Cart</h1>
                 <div id="cart">
                     <!-- CONTAINER FOR ITEMS IN CART -->
-                    
                 </div>
-                <div class="deleteItem">Delete last item</div>
-                <div id="clearAll">Clear cart</div>
+                <div class="deleteItem deletebutton">Delete Last Item</div><br>
+                <div id="clearAll" class="deletebutton">Clear Cart</div>
                 <script>
                     document.getElementById("clearAll").addEventListener("click",function(){
                         localStorage.clear();
@@ -153,7 +152,7 @@
 
                 <div class="row" style="text-align:center;">
                     <div class="darkbutton" style="margin-top:50px;width:100px;" id="orderaction">Order Now</div>
-                    <div class="roundbutton" style="margin-top:50px;width:80px;" id="cancelaction">Cancel</div>
+                    <a href="store.html"> <div class="roundbutton" style="margin-top:50px;width:80px;" id="cancelaction">Cancel</div></a>
                 </div>
             </div>
 

@@ -10,8 +10,18 @@
 
 .pricediv {
     margin: 10px;
+    width: 100px;
+    text-align: center;
+    padding: 2px;
 }
 
-.cartitem div{
-    border: 1pt solid red;
+.deletebutton {
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 15px;
+    width: 200px;
+    text-align: center;
 }
+
+
+
