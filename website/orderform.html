@@ -25,7 +25,7 @@
                 materials.push(localStorage.getItem("materials[" + j + "]"));
                 sizes.push(localStorage.getItem("sizes[" + j + "]"));
                 prices.push(localStorage.getItem("prices[" + j + "]"));
-                //images.push(localStorage.getItem())
+                images.push(localStorage.getItem("images[" + j + "]"));
             }
 
             showCart();
@@ -35,8 +35,9 @@
             let html = "";
             if(localStorage.getItem("lastindex") != null && localStorage.getItem("lastindex") > 0){
                 document.getElementById("clearAll").style.display = "inline";
+                console.log(localStorage.getItem("prices[" + 0 + "]"));
                 for(let j=0;j<localStorage.getItem("lastindex");j++){
-                    html +="<div class='cartitem cartbg'><div class='row'><img class='itemimg' src=(\"White-Resin.PNG\")></img>";
+                    html +="<div class='cartitem cartbg'><div class='row'><img class='itemimg' src='" + images[j] + "'>";
                     html += "<div>Color: " + colors[j] + "</div>";
                     html += "<div>Material: " + materials[j] + "</div>";
                     html += "<div>Size: " + sizes[j] + "</div>";
@@ -59,6 +60,7 @@
             materials = materials.splice(itemnum,itemnum+1);
             sizes = sizes.splice(itemnum,itemnum+1);
             prices = prices.splice(itemnum,itemnum+1);
+            images = images.splice(itemnum,itemnum+1);
 
             if(localStorage.getItem("lastindex") > 0)
                 document.getElementById("cart").innerHTML = "";
