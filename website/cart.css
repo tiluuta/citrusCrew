@@ -1,0 +1,17 @@
+.cartitem img {
+    width: 100px;
+    height: 100px;
+}
+
+.cartbg {
+    background-color:rgba(240, 248, 255, 0);
+    
+}
+
+.pricediv {
+    margin: 10px;
+}
+
+.cartitem div{
+    border: 1pt solid red;
+}
