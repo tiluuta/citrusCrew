@@ -6,95 +6,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
         <!-- ICONS -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
-        <style>
+       <!-- magnific-popup css cdn link (photogallery) -->
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+       <!-- custom css file link (photogallery) -->
+       <link rel="stylesheet" href="css/style.css">
 
-            .top1{
-                font-size:80pt;
-                color: #ffffff;
-                text-align: center;
-            }
-
-            .top2{
-                font-size: 40pt;
-                color: #ffffff;
-                text-align: center;
-            }
-
-        #school{
-            display: block;
-           
-        }
-        #home{
-            display: block;
-            
-        }
-        #work{
-            display: block;
-            align-items: center;
-        }
-
-        #herophoto {
-            width: 230px;
-            height: 230px;
-            align-items: center;
-            margin-left: 500px;
-        }
-            .icons{
-            width: 350px;
-            height: auto;
-            align-items: left;
-            float: left;
-            
-        }
-        h1{
-            color: #ffffff;
-            text-align: center;
-            font-size:40pt;
-        }
-        h2{
-            color: #d0cfcf;
-            font-size: 60pt;
-            text-align: left;
-            margin-left: 400px;
-        }
-        h3{
-            color: #313131;
-            font-size: 30pt;
-            text-align: left;
-        }
-        .tagline{
-            color: #FFFFFF;
-            text-align: left;
-            font-size: 70pt;
-        }
-        .greybg{ 
-            position: absolute;
-            width: 1512px;
-            height: 1400px;
-            left: 0px;
-            top: 1140px;
-
-            background: linear-gradient(111.05deg, #FFFFFF 8.83%, rgba(255, 255, 255, 0.57) 65.54%);
-        }
-
-        .darkbutton1{
-    background: rgba(72, 71, 71, 0.8);
-    border: 2px solid #FFFFFF;
-    border-radius: 50px;
-    font-size:14pt;
-    width:fit-content;
-    height:fit-content;
-    padding:10px 50px;
-    color:white;
-
-}
-
-#learnmore{
-    width: 230px;
-            height: 230px;
-            float: right;
-}
-        </style>
 
     </head>
     <body>
@@ -120,7 +36,29 @@
                 <h1 class="tagline">Compact.</h1> <br>
             </div>
             <div class="greycontainer">
-                <div> <img id="learnmore" src="ring_transparent.png"></div>
+                <div> 
+                    <div class="gallery">
+                        <div class="image-container">
+                        <a href="WhiteGlass.png" class="image">
+                            <img src="WhiteGlass.png" alt="">
+                        </a>
+                        <a href="Black Glass.png" class="image hidden">
+                            <img src="Black Glass.png" alt="">
+                        </a>
+                        <a href="White Metal.png" class="image hidden">
+                            <img src="White Metal.png" alt="">
+                        </a>
+                        <a href="Black Metal.png" class="image hidden">
+                            <img src="Black Metal.png" alt="">
+                        </a>
+                
+                   
+                
+            
+                       
+                    </div>
+                
+                </div></div>
                 <h3>Access at your fingertips</h3>
                 <a href="learn.html"><div class="darkbutton1">Learn more</div></a>
                 
@@ -141,5 +79,36 @@
             </div>
             </div>
 
+
+
+             <!-- jquery cdn link (photogallery)  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- magnific popup js cdn link (photogallery) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+<script> /*photogallery*/
+
+$(document).ready(function(){
+    $(".hidden").hide();
+    $('.gallery').magnificPopup({
+
+        delegate:'a',
+        type:'image',
+        gallery:{
+            enabled:true
+        },
+        callbacks: {
+            imageLoadComplete: function() {
+                this.content.find('img').css({
+                    'max-width': '800px',
+                    'max-height': '800px'
+                });
+            }
+        }
+    });
+
+});
+</script>
     </body>
 </html>

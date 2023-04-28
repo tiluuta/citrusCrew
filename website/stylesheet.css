@@ -222,6 +222,11 @@ input[type="submit"] {
 }
 
 /* ORDER PAGE */
+.box h1{
+    color:#565656;
+    text-align:left;
+}
+
 #orderform input[type="text"],
 #orderform input[type="email"],
 #orderform textarea {
@@ -261,7 +266,105 @@ input[type="submit"] {
 
 /* photogallery */
 
+.gallery .controls{
+    display: flex;
+}
 
+/*main*/
+.top1{
+    font-size:80pt;
+    color: #ffffff;
+    text-align: center;
+}
+
+.top2{
+    font-size: 40pt;
+    color: #ffffff;
+    text-align: center;
+}
+
+#school{
+display: block;
+
+}
+#home{
+display: block;
+
+}
+#work{
+display: block;
+align-items: center;
+}
+
+#herophoto {
+width: 230px;
+height: 230px;
+align-items: center;
+margin-left: 500px;
+}
+.icons{
+width: 350px;
+height: auto;
+align-items: left;
+float: left;
+
+}
+h1{
+color: #ffffff;
+text-align: center;
+font-size:40pt;
+}
+h2{
+color: #d0cfcf;
+font-size: 60pt;
+text-align: left;
+margin-left: 400px;
+}
+h3{
+color: #313131;
+font-size: 30pt;
+text-align: left;
+}
+.tagline{
+color: #FFFFFF;
+text-align: left;
+font-size: 70pt;
+}
+.greybg{ 
+position: absolute;
+width: 1512px;
+height: 1400px;
+left: 0px;
+top: 1140px;
+
+background: linear-gradient(111.05deg, #FFFFFF 8.83%, rgba(255, 255, 255, 0.57) 65.54%);
+}
+
+.darkbutton1{
+background: rgba(72, 71, 71, 0.8);
+border: 2px solid #FFFFFF;
+border-radius: 50px;
+font-size:14pt;
+width:fit-content;
+height:fit-content;
+padding:10px 50px;
+color:white;
+
+}
+
+#learnmore{
+width: 230px;
+height: 230px;
+float: right;
+}
+
+/* photogallery */
+
+.gallery {
+float: right;
+margin-right: 700px;
+margin-top: -110px;
+}
 
 .gallery .controls{
     display: flex;
@@ -298,15 +401,15 @@ input[type="submit"] {
 }
 
 .gallery .image-container .image{
-    height:400px;
-    width: 400px;
+    height:350px;
+    width: 350px;
     overflow: hidden;
     margin: 20px;
 }
 
 .gallery .image-container .image img{
-    height: 400px;
-    width:400px;
+    height: 350px;
+    width:350px;
 
 }
 
@@ -338,5 +441,16 @@ input[type="submit"] {
     color:red;
 }
 
+/* Looping animation*/
+.loopbox{
+    height:fit-content;
+    padding: 20px;
+    text-align: left;
+    background: linear-gradient(115.55deg, rgba(68, 68, 68, 0.22) 4.32%, #474646 97.06%);
+}
+video {
+    width: 1500px;
+    border-radius: 10px;
 
+}
 
