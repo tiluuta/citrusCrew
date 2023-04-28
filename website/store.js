@@ -4,7 +4,6 @@ var materials=[];
 var sizes=[];
 var prices=[];
 var images=[];
-let image = "White-Resin.PNG";
 let i;
 if(localStorage.getItem("lastindex") != null){
   i = localStorage.getItem("lastindex");
@@ -19,7 +18,7 @@ function updateProduct() {
     var size = document.getElementById("ring-size").value;
   
     // Update image and price based on selected options
-    image = "White-Resin.PNG";
+    let image = "White-Resin.PNG";
     let price = "$20";
 
     if (color === "Light") {
@@ -40,7 +39,7 @@ function updateProduct() {
     document.getElementById("ring-price").innerHTML = price;
   }
 
-  function storeProduct(color, material, size, price){
+  function storeProduct(color, material, size, price, image){
     if(localStorage.getItem("lastindex") != null){
       i = localStorage.getItem("lastindex");
     }
