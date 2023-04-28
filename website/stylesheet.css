@@ -314,6 +314,10 @@ color: #ffffff;
 text-align: center;
 font-size:40pt;
 }
+.whitecontainer h1{
+    color:grey;
+    text-align:left;
+}
 h2{
 color: #d0cfcf;
 font-size: 60pt;
