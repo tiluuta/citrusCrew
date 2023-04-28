@@ -3,6 +3,7 @@ var colors=[];
 var materials=[];
 var sizes=[];
 var prices=[];
+var images=[];
 let i;
 if(localStorage.getItem("lastindex") != null){
   i = localStorage.getItem("lastindex");
@@ -38,7 +39,7 @@ function updateProduct() {
     document.getElementById("ring-price").innerHTML = price;
   }
 
-  function storeProduct(color, material, size, price){
+  function storeProduct(color, material, size, price, image){
     if(localStorage.getItem("lastindex") != null){
       i = localStorage.getItem("lastindex");
     }
@@ -52,15 +53,18 @@ function updateProduct() {
     materials[i] = material;
     sizes[i] = size;
     prices[i] = price;
+    images[i] = image;
     console.log(items[i]);
     console.log(colors[i]);
     console.log(sizes[i]);
+    console.log(images[i]);
 
     localStorage.setItem("items[" + i + "]", items[i]);
     localStorage.setItem("colors[" + i + "]", colors[i]);
     localStorage.setItem("materials[" + i + "]", materials[i]);
     localStorage.setItem("sizes[" + i + "]", sizes[i]);
     localStorage.setItem("prices[" + i + "]", prices[i]);
+    localStorage.setItem("images[" + i + "]", images[i]);
     localStorage.setItem("lastindex", parseFloat(i) + 1);
 
     alert("Your item has been sccessfully added to your cart!");
