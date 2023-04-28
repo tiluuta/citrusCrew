@@ -35,7 +35,6 @@
             let html = "";
             if(localStorage.getItem("lastindex") != null && localStorage.getItem("lastindex") > 0){
                 document.getElementById("clearAll").style.display = "inline";
-                console.log(localStorage.getItem("prices[" + 0 + "]"));
                 for(let j=0;j<localStorage.getItem("lastindex");j++){
                     html +="<div class='cartitem cartbg'><div class='row'><img class='itemimg' src='" + images[j] + "'>";
                     html += "<div>Color: " + colors[j] + "</div>";
@@ -93,9 +92,10 @@
                 <h1>Cart</h1>
                 <div id="cart">
                     <!-- CONTAINER FOR ITEMS IN CART -->
+                    
                 </div>
-                <div class="deleteItem deletebutton">Delete Last Item</div><br>
-                <div id="clearAll" class="deletebutton">Clear Cart</div>
+                <div class="deleteItem">Delete last item</div>
+                <div id="clearAll">Clear cart</div>
                 <script>
                     document.getElementById("clearAll").addEventListener("click",function(){
                         localStorage.clear();
