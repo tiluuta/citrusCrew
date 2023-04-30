@@ -18,6 +18,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
+
         $("#scroll-button").click(function () {
             $('html,body').animate({
                 scrollTop: $(".box").offset().top
@@ -30,7 +31,7 @@
 <body>
     <div id="navbar">
         <span class="material-symbols-outlined icon"><a href="main.html">apps</a></span>
-        <span class="material-symbols-outlined icon"><a href="orderform.html">shopping_cart</a></span>
+        <span class="material-symbols-outlined icon"><div id="notif"></div><a href="orderform.html">shopping_cart</a></span>
         <span class="material-symbols-outlined icon"><a href="contact.html">contact_support</a></span>
     </div>
     <div id="outercontainer">
@@ -178,6 +179,7 @@
                         </div>
 
                         <script>
+                            updateQuantity();
 
                             document.getElementById("addtocart").addEventListener("click", function () {
                                 if (document.getElementById("ring-size").value == "default-size") {

@@ -16,8 +16,11 @@
     <link href="problemsolution.css" rel="stylesheet" type="text/css">
     <!--Loading jQuery-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- store js -->
+    <script src="store.js"></script>
 
     <script>
+
         $("#scroll-button").click(function () {
             $('html,body').animate({
                 scrollTop: $(".box").offset().top
@@ -30,9 +33,14 @@
 <body>
     <div id="navbar">
         <span class="material-symbols-outlined icon"><a href="main.html">apps</a></span>
-        <span class="material-symbols-outlined icon"><a href="orderform.html">shopping_cart</a></span>
+        <span class="material-symbols-outlined icon"><div id="notif"></div><a href="orderform.html">shopping_cart</a></span>
         <span class="material-symbols-outlined icon"><a href="contact.html">contact_support</a></span>
     </div>
+
+    <script>
+        updateQuantity();
+    </script>
+    
     <div id="outercontainer">
         <div id="headcontainer">
             <div id="bigringbackground">
@@ -57,7 +65,7 @@
         </div>
         <div class="greycontainer" style="height: 700px">
 
-            <img style="width: 400px; margin-top: 80px;" src="White-Resin.PNG" alt="Light Titanium Ring">
+            <img style="width: 300px; margin-top: 80px;" src="White-Resin.PNG" alt="Light Titanium Ring">
 
             <div id="desc">
                 <p class="bigt">Mission Statement</p>
@@ -88,9 +96,9 @@
     </div>
     <div id="footer">
         <div class="row" style="align-items:flex-start;gap:30%;">
-            <div class="bigtitle">Keyring.</div>
-            <div class="column" style="margin-top:50px;">
-                <a href="main.html">Home.</a>
+        <div class="bigtitle">Keyring.</div>
+        <div class="column" style="margin-top:50px;">
+            <a href="main.html">Home.</a>
                 <a href="team.html">About Us.</a>
                 <a href="problemsolution.html">Our Mission.</a>
                 <a href="store.html">Store.</a>
@@ -98,9 +106,10 @@
                 <a href="learn.html">How to use.</a>
                 <a href="usecases.html">Use cases.</a>
                 <a href="contact.html">Contact us.</a>
-            </div>
         </div>
     </div>
+    </div>
+
 
 </body>
 
