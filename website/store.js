@@ -68,8 +68,21 @@ function updateProduct() {
     localStorage.setItem("lastindex", parseFloat(i) + 1);
 
     alert("Your item has been sccessfully added to your cart!");
+    updateQuantity();
     
   }
+
+  updateQuantity = function(){
+    let html = ""
+    if(localStorage.getItem("lastindex") != null){
+      document.getElementById("notif").style.display = "inline";
+      html = localStorage.getItem("lastindex");
+    } else{
+      html = 0;
+    }
+    document.getElementById("notif").innerHTML = html;
+    
+}
   
 
 

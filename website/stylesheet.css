@@ -443,6 +443,17 @@ margin-top: -110px;
 }
 .deleteItem{
     color:red;
+    cursor:pointer;
+}
+#notif{
+    background-color: grey;
+    position:absolute;
+    width: 20px;
+    aspect-ratio: 1/1;
+    font-size:15px;
+    text-align:center;
+    border-radius: 50%;
+
 }
 
 /* Looping animation*/
