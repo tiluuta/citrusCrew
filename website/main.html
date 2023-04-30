@@ -10,13 +10,15 @@
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
        <!-- custom css file link (photogallery) -->
        <link rel="stylesheet" href="css/style.css">
+       <!-- store js -->
+       <script src="store.js"></script>
 
 
     </head>
     <body>
         <div id="navbar">
         <span class="material-symbols-outlined icon"><a href="main.html">apps</a></span>
-        <span class="material-symbols-outlined icon"><a href="orderform.html">shopping_cart</a></span>
+        <span class="material-symbols-outlined icon"><div id="notif"></div><a href="orderform.html">shopping_cart</a></span>
         <span class="material-symbols-outlined icon"><a href="contact.html">contact_support</a></span>
         </div>
         <div id="outercontainer">
@@ -76,6 +78,7 @@
                 <a href="learn.html">How to use.</a>
                 <a href="usecases.html">Use cases.</a>
                 <a href="contact.html">Contact us.</a>
+                <a href="devteam.html">About Dev Team.</a>
                 </div>
             </div>
             </div>
@@ -110,6 +113,8 @@ $(document).ready(function(){
     });
 
 });
+
+updateQuantity();
 </script>
     </body>
 </html>
