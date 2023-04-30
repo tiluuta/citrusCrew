@@ -73,11 +73,12 @@ function updateProduct() {
   }
 
   updateQuantity = function(){
-    let html = ""
+    let html = "";
     if(localStorage.getItem("lastindex") != null){
       document.getElementById("notif").style.display = "inline";
       html = localStorage.getItem("lastindex");
     } else{
+      document.getElementById("notif").style.display = "none";
       html = 0;
     }
     document.getElementById("notif").innerHTML = html;

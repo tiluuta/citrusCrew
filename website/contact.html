@@ -5,13 +5,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
     <!-- ICONS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <!-- store js -->
+    <script src="store.js"></script>
 </head>  
 <body>
     <div id="navbar">
         <span class="material-symbols-outlined icon"><a href="main.html">apps</a></span>
-        <span class="material-symbols-outlined icon"><a href="orderform.html">shopping_cart</a></span>
+        <span class="material-symbols-outlined icon"><div id="notif"></div><a href="orderform.html">shopping_cart</a></span>
         <span class="material-symbols-outlined icon"><a href="contact.html">contact_support</a></span>
     </div>
+
+    <script>
+        updateQuantity();
+    </script>
 
     <div id="headcontainer">
         <div id="bigringbackground">
