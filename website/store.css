@@ -1,3 +1,8 @@
+h3 {
+  text-align: center;
+  color: rgb(69, 69, 69);
+}
+
 .product-customization {
     display: flex;
     flex-direction: row;

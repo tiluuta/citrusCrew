@@ -39,7 +39,7 @@
                 <div style="height:100px;"></div>
                 <div class="tinytext">Unlock convenience.</div>
                 <div class="bigtitle">Keyring.</div>
-                <h2>Scroll to shop.</h2>
+                <h3>Scroll to shop.</h3>
             </div>
         </div>
         <div class="whitecontainer">
@@ -187,7 +187,8 @@
                                     let material = document.getElementById("ring-material").value;
                                     let size = document.getElementById("ring-size").value;
                                     let price = document.getElementById("ring-price").innerHTML;
-                                    storeProduct(color, material, size, price);
+                                    let image = document.getElementById("ring-image").src;
+                                    storeProduct(color, material, size, price, image);
                                 }
                             })
                         </script>
@@ -200,17 +201,18 @@
     </div>
     <div id="footer">
         <div class="row" style="align-items:flex-start;gap:30%;">
-            <div class="bigtitle">Keyring.</div>
-            <div class="column" style="margin-top:50px;">
-                <a href="main.html">Home.</a>
+        <div class="bigtitle">Keyring.</div>
+        <div class="column" style="margin-top:50px;">
+            <a href="main.html">Home.</a>
                 <a href="team.html">About Us.</a>
+                <a href="problemsolution.html">Our Mission.</a>
                 <a href="store.html">Store.</a>
-                <a href="features.html">How to use.</a>
-                <a href="learn.html">How it works.</a>
+                <a href="features.html">Features.</a>
+                <a href="learn.html">How to use.</a>
                 <a href="usecases.html">Use cases.</a>
                 <a href="contact.html">Contact us.</a>
-            </div>
         </div>
+    </div>
     </div>
 
 </body>
