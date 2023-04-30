@@ -19,6 +19,10 @@
     <!-- store js -->
     <script src="store.js"></script>
 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Projected Sales</title>
+
     <script>
 
         $("#scroll-button").click(function () {
@@ -28,6 +32,34 @@
                 'slow');
         });
     </script>
+
+<style>
+    .chartMenu {
+      width: 100vw;
+      height: 40px;
+      background: #1A1A1A;
+      color: rgb(255, 255, 255);
+    }
+    .chartMenu p {
+      padding: 10px;
+      font-size: 20px;
+    }
+    .chartCard {
+      width: 100vw;
+      height: calc(100vh - 40px);
+      background: rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .chartBox {
+      width: 700px;
+      padding: 20px;
+      border-radius: 20px;
+      border: solid 3px rgb(0, 0, 0);
+      background: white;
+    }
+  </style>
 </head>
 
 <body>
@@ -94,6 +126,73 @@
             <p></p>
         </div>
 
+        <div style="margin-top:100px; ">
+            <div class="bigtitle"> Projected Revenue</div>
+                <div class="chartCard">
+                  <div class="chartBox">
+                    <canvas id="myChart"></canvas>
+                    <input style="text-align: center;" oninput="updateChart(this)" type="range" id="points" value="3" min="1" max="3">
+                  </div>
+                </div>
+            
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+                <script>
+                // setup 
+                const labels = ['Year 1', 'Year 2', 'Year 3']
+                const data = {
+                  labels: labels,
+                  datasets: [{
+                    label: 'Projected Revenue',
+                    data: [4166.68,48493.38 ,392466.92],
+                    backgroundColor: [
+                      '#d0d0d0',
+                      '#bcb6b4',
+                      '#8f9498',
+                    ],
+                    borderColor: [
+                      '#272727',
+                      '#272727',
+                      '#272727',
+                    ],
+                    borderWidth: 1
+                  }]
+                };
+            
+                // config 
+                const config = {
+                  type: 'bar',
+                  data,
+                  options: {
+                    scales: {
+                      y: {
+                        beginAtZero: true
+                      }
+                    }
+                  }
+                };
+            
+                // render init block
+                const myChart = new Chart(
+                  document.getElementById('myChart'),
+                  config
+                );
+            
+                function updateChart(range) {
+                    // console.log(range.value)
+                    // console.log(myChart.config.data.labels)
+                    const rangeValue = labels.slice(0,range.value);
+                    // console.log(rangeValue);
+                    myChart.config.data.labels = rangeValue;
+                    myChart.update()
+                }
+             
+            
+                // Instantly assign Chart.js version
+                const chartVersion = document.getElementById('chartVersion');
+                chartVersion.innerText = Chart.version;
+                </script>
+            
+            </div>
 
     </div>
     <div id="footer">
