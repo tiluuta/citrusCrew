@@ -501,6 +501,9 @@ video {
     #flex{
         flex-direction:column;
     }
+    #places img{
+        width:50%;
+    }
 }
 
 @media screen and (min-width:767px) and (max-width:1023px){
@@ -573,9 +576,6 @@ video {
 
   .gallery{
     margin-right:200px;
-  }
-  #herophoto{
-    margin-left:300px;
   }
   #bigringbackground{
     background-image:url("transparent-keyring.png");
