@@ -498,7 +498,9 @@ video {
     h1{
         font-size:4vw;
     }
-    
+    #flex{
+        flex-direction:column;
+    }
 
 }
 

@@ -31,3 +31,10 @@
     height: 150px;
     margin: 30px;
 }
+
+/* PHONE RESPONSIVENESS */
+@media screen and (max-width: 998px) {
+    #rfid{
+        width:100%;
+    }
+}
