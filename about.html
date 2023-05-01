@@ -1,5 +1,9 @@
 <html>
   <head>
+       <!-- magnific-popup css cdn link (photogallery) -->
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+       <!-- custom css file link (photogallery) -->
+       <link rel="stylesheet" href="css/style.css">
     <title>About Team Orange</title>
     <style>
       body{
@@ -125,5 +129,36 @@
       </div>
     </div>
     
+     <!-- jquery cdn link (photogallery)  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- magnific popup js cdn link (photogallery) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+<script> /*photogallery*/
+
+$(document).ready(function(){
+   
+    $('.gallery').magnificPopup({
+
+        delegate:'a',
+        type:'image',
+        gallery:{
+            enabled:true
+        },
+        callbacks: {
+            imageLoadComplete: function() {
+                this.content.find('img').css({
+                    'max-width': '800px',
+                    'max-height': '800px'
+                });
+            }
+        }
+    });
+
+});
+
+updateQuantity();
+</script>
   </body>
 <html>
