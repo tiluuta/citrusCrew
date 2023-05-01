@@ -501,6 +501,90 @@ video {
     #flex{
         flex-direction:column;
     }
+}
+
+@media screen and (min-width:767px) and (max-width:1023px){
+ 
+    
+    .box img{
+        height:200px;
+        width:200px;
+    }
+    .tinytext{
+        font-size:20pt;
+        margin-bottom:-20px;
+    }
+    .midtitle{
+        font-size: 30pt;
+        color: #565656;
+        margin-bottom:100px;
+    }
+    
+  
+    #contactbox{
+        width: 750px;
+        height: 550px;
+        margin: auto;
+        margin-top: -50px;
+        padding-left: 10px;
+        padding-right: 40px;
+      
+        padding-bottom:50px;
+        }
+   
+    
+        
+        #contactus {
+            
+            
+            margin-right: 200px;
+            
+        }
+        
+        .whitecontainer h1{
+            color:grey;
+            text-align:left;
+        }
+        h2{
+        color: #d0cfcf;
+        font-size: 60pt;
+        text-align: left;
+        margin-left: 400px;
+        }
+        h3{
+        color: #313131;
+        font-size: 30pt;
+        text-align: left;
+        }
+  
+
+ 
+  
+ 
+    video {
+        width: 900px;
+        border-radius: 10px;
+    
+    }
+    .profile{
+        width:150px;
+        height:225px;
+    }
+
+  .gallery{
+    margin-right:200px;
+  }
+  #herophoto{
+    margin-left:300px;
+  }
+  #bigringbackground{
+    background-image:url("transparent-keyring.png");
+    background-size:1023px 100%;
+    background-repeat:no-repeat;
+    height:660px;
 
 }
+}
+
+
 
