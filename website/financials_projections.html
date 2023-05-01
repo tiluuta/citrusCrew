@@ -1,0 +1,276 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="stylesheet.css" rel="stylesheet" type="text/css">
+        <!-- FONTS -->
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+        <!-- ICONS -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+        <!-- store js -->
+        <script src="store.js"></script>
+        <style>
+            .midtitle{
+                font-size: 80pt;
+                color: #565656;
+            }
+            .image-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10%;
+}
+
+.image-container {
+  position: relative;
+  width: 30%;
+  margin: 1%;
+}
+
+.image-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 0.5rem;
+}
+
+.image-caption {
+  position: relative;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.image-grid img {
+  width: 100%;
+  display: block;
+  border-radius: 10%;
+}
+
+@media screen and (max-width: 768px) {
+  .image-grid img {
+    width: 45%;
+    margin: 2.5%;
+  }
+  .row{
+    flex-direction:column;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .image-grid img {
+    width: 90%;
+    margin: 5%;
+  }
+}
+.top1{
+                font-size:60pt;
+                color: #565656;
+    text-align: center;
+            }
+            .darkcontainer{
+    height:fit-content;
+    padding: 100px;
+    text-align:left;
+    background: linear-gradient(115.55deg, rgba(87, 87, 87, 0.22) 100%, #000000 97.06%);
+}
+.blocktext{
+    text-align: center;
+    font-size: 24pt;
+    color: rgb(51, 51, 51);
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: -70px;
+
+}
+.bottomcontainer{
+    height:fit-content;
+    padding: 100px;
+    text-align:left;
+    background-color: rgb(54, 54, 54);
+    
+}
+.bottombox img{
+    margin-left: 15%;
+    margin-right: 10%;
+    margin-top: 80px;
+    width: 70%;
+    display: block;
+    border-radius: 10%;
+}
+.bottombox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.midtitle{
+    text-align: center;
+}
+
+.container {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: 80px;
+      }
+
+      .box {
+        flex-basis: 47%;
+        box-sizing: border-box;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .box h1 {
+        font-size: 48px;
+        text-align: center;
+      }
+
+      .box img {
+        width: 80%;
+        margin: 10% 0;
+        height:auto;
+      }
+
+      .box p {
+        font-size: 30px;
+        text-align: center;
+      }
+      .top1{
+                font-size:60pt;
+    color: #565656;
+    text-align: left;
+    margin-left: 14%;
+            }
+            .top2{
+                font-size:60pt;
+    color: #565656;
+    text-align: right;
+    margin-right: 14%;
+            }
+            .threeboxs {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .eachbox {
+        flex-basis: 33.33%;
+        box-sizing: border-box;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: 300px;
+      }
+      .eachbox h1 {
+        font-size: 40px;
+        margin-bottom: 20px;
+        color: #7b7b7b;
+      }
+      .eachbox p {
+        font-size: 26px;
+      }
+        </style>
+    </head>
+    <body>
+        <div id="navbar">
+            <span class="material-symbols-outlined icon"><a href="main.html">apps</a></span>
+            <span class="material-symbols-outlined icon"><div id="notif"></div><a href="orderform.html">shopping_cart</a></span>
+            <span class="material-symbols-outlined icon">contact_support</span>
+        </div>
+
+        <script>
+            updateQuantity();
+        </script>
+        
+        <div id="outercontainer">
+            <div id="headcontainer">
+                <div id="bigringbackground">
+                    <div style="height:100px;"></div>
+                    <div class="top1">Current financials...</div>
+                    <div class="bigtitle">Keyring.</div>
+                    <div class="top2">...future projections.</div>
+                </div>
+            </div>
+            <div class="darkcontainer">
+                <div class="midtitle">Business Pilot Data & 
+                    Financial Projections</div>
+                    <div class="container">
+                        <div class="box">
+                          <h1>Projected Balance Sheet</h1>
+                          <img src="thirdfinancials.jpeg" alt="first">
+                          <h1>Behind the Estimate</h1>
+                          <p>To estimate our growth, we compared our key-ring to Doorbot. Doorbot is the original company before they rebranded to Ring, whose most popular product is their security camera equipped doorbell. We recognize that our products are not completely the same, there are few in our exact niche. Instead, we are comparing based on the fact that Doorbot also focuses on security and doors. They were recently bought by Amazon for over a billion dollars.</p>
+                        <br> <br> <br> <br> <br> 
+                          
+                         </div>
+                        <div class="box">
+                          <h1>Cash Flow Statement &
+                            Cash Flow Projections</h1>
+                          <img src="secondfinancials.jpeg" alt="second">
+                          <h1>Projected Income Statement</h1>
+                          <img src="firstfinancials.jpeg" alt="third">
+                        </div>
+                      </div>
+
+                      <div class="threeboxs">
+                        <div class="eachbox">
+                          <h1>Maximum Likelihood Growth</h1>
+                          <p>When Doorbot launched in 2013, they had $364,000 in funding, which was used mainly to manufacture the product. However, since KeyRing is a much cheaper product to produce, and with high margins, our growth should be similar even without as much funding. Doorbot sold 20,000 units in their first year. Unlike Doorbot, our first year involves the creation process while selling. Thus we decided to think of our second year as if it was Doorbots first year because by our second year, we will also have an efficient manufacturing process. So if we invest our profits into injection molding, we can produce mass orders and exponentially increase our units sold to approximately 20,000 units which is a 400% increase.
+                        </p>
+                        </div>
+                        <div class="eachbox">
+                          <h1>10% > ML Growth</h1>
+                          <p>Doorbot went onto Shark Tank looking for a $700,000 investment. Although they came back with no offers, the episode alone generated approximately $5 million in sales because everyday consumers realized they wanted the product. We have currently seen success in word of mouth, with many of our customers coming to us after a referral from a previous customer. Therefore, if we can fulfill orders for an organization (B2B instead of just B2C) , the success of producing for an entire educational institution would act as a fantastic marketing opportunity. For example, families living in keycard-accessible apartments may be interested in the product after seeing their child with it.
+
+                          </p>
+                        </div>
+                        <div class="eachbox">
+                          <h1>10% &lt; ML Growth</h1>
+                          <p>Shark Tank has a massive reach and was a main factor in Doorbots sudden jump in success. Since we rely more on word of mouth marketing VS something like Shark Tank, we also risk taking a hit if users warn others that we may be a scam. This is possible because we will not have much funding for research and development of our product, which can make our products faulty even if we have enough money to manufacture them. We may be able to prevent this via good customer support and a return policy.</p>
+                        </div>
+                      </div>
+
+
+                  
+
+
+
+                   
+                
+
+                
+            </div>
+           
+        </div>
+        <div id="footer">
+            <div class="row" style="align-items:flex-start;gap:30%;">
+            <div class="bigtitle">Keyring.</div>
+            <div class="column" style="margin-top:50px;">
+                <a href="main.html">Home.</a>
+                <a href="team.html">About Us.</a>
+                <a href="problemsolution.html">Our Mission.</a>
+                <a href="store.html">Store.</a>
+                <a href="features.html">Features.</a>
+                <a href="learn.html">How to use.</a>
+                <a href="usecases.html">Use cases.</a>
+                <a href="contact.html">Contact us.</a>
+                <a href="devteam.html">About Dev Team.</a>
+            </div>
+        </div>
+        </div>
+
+
+    </body>
+
+
+
+</html>
