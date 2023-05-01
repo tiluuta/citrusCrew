@@ -1,0 +1,317 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="stylesheet.css" rel="stylesheet" type="text/css">
+        <!-- FONTS -->
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+        <!-- ICONS -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+        <!-- store js -->
+        <script src="store.js"></script>
+        <style>
+            .midtitle{
+                font-size: 80pt;
+                color: #565656;
+            }
+            .image-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10%;
+}
+
+.image-container {
+  position: relative;
+  width: 30%;
+  margin: 1%;
+}
+
+.image-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 0.5rem;
+}
+
+.image-caption {
+  position: relative;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.image-grid img {
+  width: 100%;
+  display: block;
+  border-radius: 10%;
+}
+
+@media screen and (max-width: 768px) {
+  .image-grid img {
+    width: 45%;
+    margin: 2.5%;
+  }
+  .row{
+    flex-direction:column;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .image-grid img {
+    width: 90%;
+    margin: 5%;
+  }
+}
+.top1{
+                font-size:60pt;
+                color: #565656;
+    text-align: center;
+            }
+            .darkcontainer{
+    height:fit-content;
+    padding: 100px;
+    text-align:left;
+    background: linear-gradient(115.55deg, rgba(87, 87, 87, 0.22) 100%, #000000 97.06%);
+}
+.blocktext{
+    text-align: center;
+    font-size: 24pt;
+    color: rgb(51, 51, 51);
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: -70px;
+
+}
+.bottomcontainer{
+    height:fit-content;
+    padding: 100px;
+    text-align:left;
+    background-color: rgb(54, 54, 54);
+    
+}
+.bottombox img{
+    margin-left: 15%;
+    margin-right: 10%;
+    margin-top: 80px;
+    width: 70%;
+    display: block;
+    border-radius: 10%;
+}
+.bottombox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.midtitle{
+    text-align: center;
+}
+
+.container {
+        display: flex;
+        align-items: center;
+      }
+      
+      .image {
+        height: 300px;
+        width: auto;
+        float: left;
+        margin-right: 20px;
+      }
+      
+      .text {
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      .title {
+        font-size: 64px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #7b7b7b;
+      }
+      
+      .caption {
+        font-size: 32px;
+        font-style: italic;
+      }
+      .container2 {
+        display: flex;
+        width: 80%;
+        margin-right: 10%;
+        text-align: left;
+        margin-left: 120px;
+      }
+      
+      .left,
+      .right {
+        width: 50%;
+      }
+      
+      .title2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: rgb(72, 72, 72);
+        text-align: left;
+        font-size: 40px;
+        width: 300px;
+        margin-left: 200px;
+      }
+      
+      .text2 {
+        font-size: 16px;
+        margin-bottom: 20px;
+        color: rgb(46, 46, 46);
+        text-align: center;
+        margin-left: 40px;
+        font-size: 24px;
+      }
+        </style>
+    </head>
+    <body>
+        <div id="navbar">
+            <span class="material-symbols-outlined icon"><a href="main.html">apps</a></span>
+            <span class="material-symbols-outlined icon"><div id="notif"></div><a href="orderform.html">shopping_cart</a></span>
+            <span class="material-symbols-outlined icon">contact_support</span>
+        </div>
+
+        <script>
+            updateQuantity();
+        </script>
+        
+        <div id="outercontainer">
+            <div id="headcontainer">
+                <div id="bigringbackground">
+                    <div style="height:100px;"></div>
+                    <div class="bigtitle">Keyring.</div>
+                    <div class="top1">The opportunity.</div>
+                </div>
+            </div>
+            <div class="darkcontainer">
+                <div class="midtitle">Marketplace</div>
+                <div class="blocktext">
+                    We have identified three target segments that frequently have to use keycards.
+                    
+                </div>
+                <br><br><br>
+                <br>
+
+                <div class="container">
+                    <img src="student.png" alt="student image" class="image">
+                    <div class="text">
+                      <h2 class="title">College Students</h2>
+                      <p class="caption">Modern day colleges implement RFID technology on campus for dorm and building entrance. We provide added convenience and security.</p>
+                    </div>
+                  </div>
+                  <br><br><br><br>
+                  <div class="container">
+                    <img src="apartmentoccupants.png" alt="apartment occupants image" class="image">
+                    <div class="text">
+                      <h2 class="title">Apartment Occupants</h2>
+                      <p class="caption">Adds convenience for occupants who use keycards to enter their homes. Can be used while carrying items such as groceries so user does not have to drop everything to take out their keycard. </p>
+                    </div>
+                  </div>
+                  <br><br><br><br>
+                  <div class="container">
+                    <img src="officekeycard.png" alt="office keycard image" class="image">
+                    <div class="text">
+                      <h2 class="title">In-Person Offices</h2>
+                      <p class="caption">More and more companies and work spaces are moving to providing their employees with keycards to access the office.
+                    </p>
+                    </div>
+                  
+       
+                  </div>
+                  <div class="midtitle">Competitors</div>
+                  <div class="image-grid">
+                    <div class="image-container">
+                        <img src="competetor ring.jpg" alt="competetor ring photo">
+                    
+                      <div class="image-caption">HMY RFID Ring</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="linq bracelet Small.jpeg" alt="linq Photo">
+                      
+                      <div class="image-caption">Linq Bracelet</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="amazon logo.jpeg" alt="amazon Photo">
+                      
+                      <div class="image-caption">Other Various 
+                        Amazon Products</div>
+                    </div>
+                  </div>
+                  <br><br>
+                  <div class="midtitle">Strategy</div>
+                  <div class="blocktext">
+                    We aim to target their vulnerabilities, such as that they are chunky, heavy, and may be jarring to look at. We currently have the thinnest and lightest RFID ring on the market, with a clear option to make it even more discrete. Our bracelet will also be a lot more minimalist and comfortable than the silicone options currently available.
+                </div>
+                <br><br>
+                <div class="midtitle">Go-To-Market Plan</div>
+                <div class="blocktext">
+                    First we will target local college students in California as our primary segment. If we develop a steady production process, we should seamlessly expand to our secondary segment of college students across the country. Potentially, we will scale to a B2B model. Our tertiary segment includes direct mass orders for educational institutes, of which we have discussed with a high school. Our final quaternary segment, after having developed a mass manufacturing process, will be housing residents and hotels that require scanning for entrance.
+                </div>
+                <br><br>
+                <div class="midtitle">Our Ask</div>
+                <div class="blocktext">
+                    We are currently asking for $30k by the end of this year, and we are looking to raise $300k of funding by the end of year 2. This capital will be used for...
+                </div>
+                <br><br>
+
+                <div class="container2">
+                    <div class="left">
+                      <h2 class="title2">Bulk Purchases</h2>
+                      <p class="text2">Currently, each microchip costs $1.14 to source. With bulk purchase, we expect at least a 30% decrease in price per chip, at around 0.8 per chip.</p>
+                    </div>
+                    <div class="right">
+                      <h2 class="title2">Advertisements</h2>
+                      <p class="text2">We plan to advertise on Google Ads, YouTube and Instagram, which will require approximately $30k. This will rapidly accelerate our growth.</p>
+                    </div>
+                  </div>
+                  <br><br><br><br>  <br><br>
+                  <div class="blocktext">
+                    <stong>Securing this $30,000 in funding to support our marketing initiatives, research and development activities, operational expenses, and the transition to injection molding will enable us to scale our business, diversify our product offerings, and firmly establish ourselves as a front runner in the wearable technology sector.</stong>
+                </div>
+
+
+                  
+
+
+
+                   
+                
+
+                
+            </div>
+           
+        </div>
+        <div id="footer">
+            <div class="row" style="align-items:flex-start;gap:30%;">
+            <div class="bigtitle">Keyring.</div>
+            <div class="column" style="margin-top:50px;">
+                <a href="main.html">Home.</a>
+                <a href="team.html">About Us.</a>
+                <a href="problemsolution.html">Our Mission.</a>
+                <a href="store.html">Store.</a>
+                <a href="features.html">Features.</a>
+                <a href="learn.html">How to use.</a>
+                <a href="usecases.html">Use cases.</a>
+                <a href="contact.html">Contact us.</a>
+                <a href="devteam.html">About Dev Team.</a>
+            </div>
+        </div>
+        </div>
+
+
+    </body>
+
+
+
+</html>
