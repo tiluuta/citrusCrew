@@ -16,7 +16,7 @@ span a{
 #navbar{
     display:flex;
     flex-direction:column;
-    width:10%;
+    width:120px;
     height:100%;
     right:0;
     position:fixed;
@@ -305,9 +305,8 @@ align-items: center;
 #herophoto {
 width: 230px;
 height: 230px;
-align-items: center;
-margin-left: 500px;
 }
+
 .icons{
 width: 350px;
 height: auto;
@@ -372,7 +371,7 @@ float: right;
 
 .gallery {
 float: right;
-margin-right: 700px;
+
 margin-top: -110px;
 }
 
@@ -474,4 +473,118 @@ video {
     border-radius: 10px;
 
 }
+
+/* PHONE RESPONSIVENESS */
+@media screen and (max-width: 998px) {
+    #navbar{
+        flex-direction:row;
+        height:100px;
+        width:100%;
+        left:0;
+    }
+    #footer{
+        margin:80px 0px 0px 0px;
+        padding: 80px 0px 80px 80px;
+        background-color:white;
+        color: #565656;
+        text-align:left;
+    }
+   .row{
+        flex-direction:column;
+    }
+    .bigtitle{
+        font-size:10vw;
+    }
+    h1{
+        font-size:4vw;
+    }
+    #flex{
+        flex-direction:column;
+    }
+    #places img{
+        width:50%;
+    }
+}
+
+@media screen and (min-width:767px) and (max-width:1023px){
+ 
+    
+    .box img{
+        height:200px;
+        width:200px;
+    }
+    .tinytext{
+        font-size:20pt;
+        margin-bottom:-20px;
+    }
+    .midtitle{
+        font-size: 30pt;
+        color: #565656;
+        margin-bottom:100px;
+    }
+    
+  
+    #contactbox{
+        width: 750px;
+        height: 550px;
+        margin: auto;
+        margin-top: -50px;
+        padding-left: 10px;
+        padding-right: 40px;
+      
+        padding-bottom:50px;
+        }
+   
+    
+        
+        #contactus {
+            
+            
+            margin-right: 200px;
+            
+        }
+        
+        .whitecontainer h1{
+            color:grey;
+            text-align:left;
+        }
+        h2{
+        color: #d0cfcf;
+        font-size: 60pt;
+        text-align: left;
+        margin-left: 400px;
+        }
+        h3{
+        color: #313131;
+        font-size: 30pt;
+        text-align: left;
+        }
+  
+
+ 
+  
+ 
+    video {
+        width: 900px;
+        border-radius: 10px;
+    
+    }
+    .profile{
+        width:150px;
+        height:225px;
+    }
+
+  .gallery{
+    margin-right:200px;
+  }
+  #bigringbackground{
+    background-image:url("transparent-keyring.png");
+    background-size:1023px 100%;
+    background-repeat:no-repeat;
+    height:660px;
+
+}
+}
+
+
 

@@ -47,5 +47,28 @@ h3 {
         color:white;
   }
 
+  @media screen and (max-width: 998px) {
+    .product-customization{
+      flex-direction:column;
+      margin-left:20%;
+    }
+    .product-customization img{
+      width:200px;
+      height:200px;
+    }
+    .options{
+      flex-direction:column;
+    }
+    .product-customization h1{
+      font-size:30px;
+    }
+  }
+
+  @media screen and (max-width: 1500px) {
+    .options{
+      flex-direction:column;
+    }
+  }
+
   
   
